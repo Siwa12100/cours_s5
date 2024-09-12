@@ -13,4 +13,6 @@ public interface ILivreService {
     void supprimerLivre(int idLivre);
     void louerLivre(int idLivre, int idLoueur);
     void rendreLivre(int idLivre, int idRendeur);
+    void abonnerClient(String nomClient, String channel);
+    void desabonnerClient(String nomClient, String channel);
 }

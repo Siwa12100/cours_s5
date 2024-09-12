@@ -1,7 +1,6 @@
 package modeles;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class Livre {
     
@@ -12,6 +11,8 @@ public class Livre {
     protected String nature;
     protected String editeur;
     protected int nbCopies;
+
+    public static final int dureeVieLivreEnSecondes = 20000; 
 
     public Livre(int id, int isbn, String titre, String auteur, String nature, String editeur, int nbCopies) {
 
@@ -37,14 +38,14 @@ public class Livre {
     @Override
     public String toString() {
 
-        return "[Livre] " + this.titre + "  {" +
-                    "Id : " + this.id + 
-                    "Titre : " + this.titre + 
-                    "Auteur : " + this.auteur + 
-                    "Nature : " + this.nature + 
-                    "Editeur : " + this.editeur + 
-                    "Nombre copies : " + this.nbCopies +  
-                    "Isbn : " + this.isbn +                    
+        return "[Livre] =>" + this.titre + " {" + "\n" + "\t" + 
+                    "Id : " + this.id + "\n" + "\t" + 
+                    "Titre : " + this.titre + "\n" + "\t" + 
+                    "Auteur : " + this.auteur + "\n" + "\t" + 
+                    "Nature : " + this.nature + "\n" + "\t" + 
+                    "Editeur : " + this.editeur + "\n" + "\t" + 
+                    "Nombre copies : " + this.nbCopies +  "\n" + "\t" + 
+                    "Isbn : " + this.isbn +              "\n" +       
         "}";
     }
 }
