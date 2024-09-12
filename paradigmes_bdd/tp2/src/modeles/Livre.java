@@ -33,4 +33,18 @@ public class Livre {
         resultat.put("nbCopies", this.nbCopies);
         return resultat;
     }
+
+    @Override
+    public String toString() {
+
+        return "[Livre] " + this.titre + "  {" +
+                    "Id : " + this.id + 
+                    "Titre : " + this.titre + 
+                    "Auteur : " + this.auteur + 
+                    "Nature : " + this.nature + 
+                    "Editeur : " + this.editeur + 
+                    "Nombre copies : " + this.nbCopies +  
+                    "Isbn : " + this.isbn +                    
+        "}";
+    }
 }
