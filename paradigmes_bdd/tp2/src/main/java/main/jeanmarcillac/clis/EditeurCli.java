@@ -15,7 +15,7 @@ public class EditeurCli {
         this.livreService = livreService;
     }
 
-    protected void nettoyerTerminal() {
+    public void nettoyerTerminal() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
@@ -29,7 +29,7 @@ public class EditeurCli {
         System.out.println("1.) Ajouter un livre.");
         System.out.println("2.) Supprimer un livre.");
         System.out.println("3.) Afficher tous les livres.");
-        System.out.println("4.) Quitter.");
+        System.out.println("4.) Retour menu principal.");
         System.out.print("\n---> Votre reponse : ");
 
         int reponse = Integer.parseInt(scanner.nextLine());   
