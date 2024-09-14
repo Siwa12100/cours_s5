@@ -1,15 +1,18 @@
-package clis;
+package main.jeanmarcillac.clis;
 
 import java.util.Scanner;
 
-import modeles.Livre;
+import main.jeanmarcillac.LivresService.ILivreService;
+import main.jeanmarcillac.modeles.Livre;
 
 public class EditeurCli {
     
     protected Scanner scanner;
+    protected ILivreService livreService;
 
-    public EditeurCli(Scanner scanner) {
+    public EditeurCli(Scanner scanner, ILivreService livreService) {
         this.scanner = scanner;
+        this.livreService = livreService;
     }
 
     protected void nettoyerTerminal() {
@@ -17,27 +20,20 @@ public class EditeurCli {
         System.out.flush();
     }
 
-
-
     public void menuEditeur() {
 
+        this.nettoyerTerminal(); 
         System.out.println("=========================");
         System.out.println("Menu d'edition des livres");
         System.out.println("=========================");
-
         System.out.println("1.) Ajouter un livre.");
-        System.out.println("2.) Modifier un livre.");
-        System.out.println("3.) Supprimer un livre.");
-        System.out.println("4.) Modifier un livre");
-        System.out.println("5.) Afficher tous les livres.");
+        System.out.println("2.) Supprimer un livre.");
+        System.out.println("3.) Afficher tous les livres.");
+        System.out.println("4.) Quitter.");
         System.out.print("\n---> Votre reponse : ");
 
-        int reponse = Integer.parseInt(scanner.nextLine());
-        System.out.println("\nres : " + reponse );
-
-        this.nettoyerTerminal();  
-         
-
+        int reponse = Integer.parseInt(scanner.nextLine());   
+        this.nettoyerTerminal(); 
         switch(reponse) {
 
             case 1 : this.menuAjoutLivre();
@@ -45,11 +41,11 @@ public class EditeurCli {
 
             default : System.out.println("[Probleme] : entree inconnue.");
         }
-
     }
 
     protected void menuAjoutLivre() {
 
+        System.out.println("----------------");
         System.out.println("Ajout d'un livre");
         System.out.println("----------------");
 
@@ -71,10 +67,9 @@ public class EditeurCli {
         System.out.print("Nombre de copies du livre (<= 0) : ");
         int nbCopies = Integer.parseInt(scanner.nextLine());
 
-        Livre nouveauLivre = new Livre(1, isbn, titre, auteur, nature, editeur, nbCopies);
-        System.out.println("\n\n " + nouveauLivre);
+        Livre nouveauLivre = new Livre(isbn, titre, auteur, nature, editeur, nbCopies);
+        this.livreService.ajouterLivre(nouveauLivre);
 
-        System.out.print("\033[H\033[2J");  
-        System.out.flush(); 
+        System.out.println("[Infos] : Livre suivant bien ajoute : " + titre + ".");
     }
 }

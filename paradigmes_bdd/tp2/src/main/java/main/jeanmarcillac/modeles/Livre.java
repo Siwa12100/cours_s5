@@ -1,6 +1,7 @@
-package modeles;
+package main.jeanmarcillac.modeles;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Livre {
     
@@ -12,7 +13,8 @@ public class Livre {
     protected String editeur;
     protected int nbCopies;
 
-    public static final int dureeVieLivreEnSecondes = 20000; 
+    public static final int dureeVieLivreEnSecondes = 20000;
+    protected static final int valeurIdNonDefini = -1;
 
     public Livre(int id, int isbn, String titre, String auteur, String nature, String editeur, int nbCopies) {
 
@@ -25,9 +27,34 @@ public class Livre {
         this.nbCopies = nbCopies;
     }
 
+    public Livre(int isbn, String titre, String auteur, String nature, String editeur, int nbCopies) {
+        this(Livre.valeurIdNonDefini, isbn, titre, auteur, nature, editeur, nbCopies);
+    }
+
+    public Livre(Map<String, String> livreData) {
+
+           this.id = Integer.parseInt(livreData.get("id"));
+           this.isbn = Integer.parseInt(livreData.get("isbn"));
+           this.titre = livreData.get("titre");
+           this.auteur = livreData.get("auteur");
+           this.nature = livreData.get("nature");
+           this.editeur = livreData.get("editeur");
+           this.nbCopies = Integer.parseInt(livreData.get("nbCopies"));
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public HashMap<String, Object> toHashMap() {
         HashMap<String, Object> resultat = new HashMap<>();
         resultat.put("id", this.id);
+        resultat.put("titre", this.titre);
+        resultat.put("nature", this.nature);
         resultat.put("isbn", this.isbn);
         resultat.put("auteur", this.auteur);
         resultat.put("editeur", this.editeur);
@@ -37,8 +64,7 @@ public class Livre {
 
     @Override
     public String toString() {
-
-        return "[Livre] =>" + this.titre + " {" + "\n" + "\t" + 
+        return "[Livre] => " + this.titre + " {" + "\n" + "\t" + 
                     "Id : " + this.id + "\n" + "\t" + 
                     "Titre : " + this.titre + "\n" + "\t" + 
                     "Auteur : " + this.auteur + "\n" + "\t" + 
