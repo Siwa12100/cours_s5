@@ -50,6 +50,10 @@ public class Livre {
         this.id = id;
     }
 
+    public String getTitre() {
+        return this.titre;
+    }
+
     public HashMap<String, Object> toHashMap() {
         HashMap<String, Object> resultat = new HashMap<>();
         resultat.put("id", this.id);

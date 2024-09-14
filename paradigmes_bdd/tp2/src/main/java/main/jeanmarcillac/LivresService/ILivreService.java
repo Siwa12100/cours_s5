@@ -10,7 +10,7 @@ public interface ILivreService {
     void ajouterLivre(Livre livreAAjouter);
     Optional<Livre> recupererLivre(int idLivreARecuperer);
     List<Livre> recupererTousLesLivres();
-    void supprimerLivre(int idLivre);
+    boolean supprimerLivre(int idLivre);
     void louerLivre(int idLivre, int idLoueur);
     void rendreLivre(int idLivre, int idRendeur);
     void abonnerClient(String nomClient, String channel);

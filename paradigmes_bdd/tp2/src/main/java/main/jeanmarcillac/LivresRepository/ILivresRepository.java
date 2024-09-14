@@ -10,5 +10,6 @@ public interface ILivresRepository {
     void sauvegarderLivre(Livre livreASauvegarder);
     Optional<Livre> recupererLivre(int idLivre);
     List<Livre> recupererLivres();
-    void supprimerLivre(int idLivre);
+    boolean supprimerLivre(int idLivre);
+    int recupererNombreDeLivres();
 }

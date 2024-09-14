@@ -39,8 +39,58 @@ public class EditeurCli {
             case 1 : this.menuAjoutLivre();
             break;
 
+            case 2 : this.menuSuppressionLivre();
+            break;
+
+            case 3 : this.menuAffichageLivres();
+            break;
+
+            case 4 : System.out.println("\n[Infos] : fin du programme.");
+            break;
+
             default : System.out.println("[Probleme] : entree inconnue.");
         }
+    }
+
+    protected void menuAffichageLivres() {
+
+        System.out.println("-----------------------------------");
+        System.out.println("Liste des livres de la bibliotheque");
+        System.out.println("-----------------------------------\n");
+
+        this.livreService.recupererTousLesLivres().forEach(livre -> {
+
+            System.out.println(" * " + livre + "\n");
+        });
+
+        this.faireAvancerUtilisateur();
+        this.menuEditeur();
+    }
+
+    protected void menuSuppressionLivre() {
+
+        System.out.println("-----------------------");
+        System.out.println("Suppression d'un livre");
+        System.out.println("-----------------------\n");
+
+        System.out.println("- - - - - - Tous les livres : - - - - -");
+        this.livreService.recupererTousLesLivres().forEach(livre -> {
+
+            System.out.println(" * Id : " + livre.getId() + "| Titre : " + livre.getTitre() + ".\n");
+        });
+
+        System.out.print("\n---> Id du livre a supprimer : ");
+        int reponse = Integer.parseInt(scanner.nextLine());
+        boolean resultat = this.livreService.supprimerLivre(reponse);
+
+        if (resultat) {
+            System.out.println("\n[Infos] : Le livre d'id " + reponse + " bien supprime.");
+        } else {
+            System.out.println("\n[Erreur] : Aucun livre trouvé avec l'id " + reponse + ".");
+        }
+
+        this.faireAvancerUtilisateur();
+        this.menuEditeur();
     }
 
     protected void menuAjoutLivre() {
@@ -70,6 +120,13 @@ public class EditeurCli {
         Livre nouveauLivre = new Livre(isbn, titre, auteur, nature, editeur, nbCopies);
         this.livreService.ajouterLivre(nouveauLivre);
 
-        System.out.println("[Infos] : Livre suivant bien ajoute : " + titre + ".");
+        System.out.println("\n[Infos] : Livre suivant bien ajoute : " + titre + ".");
+        this.faireAvancerUtilisateur();
+        this.menuEditeur();
+    }
+
+    protected void faireAvancerUtilisateur() {
+        System.out.println("\n---> Appuyez sur ENTRER pour continuer...");
+        this.scanner.nextLine();
     }
 }

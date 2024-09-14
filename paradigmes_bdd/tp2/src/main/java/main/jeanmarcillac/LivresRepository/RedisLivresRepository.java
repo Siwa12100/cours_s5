@@ -61,14 +61,21 @@ public class RedisLivresRepository implements ILivresRepository {
     }
 
     @Override
-    public void supprimerLivre(int idLivre) {
+    public boolean supprimerLivre(int idLivre) {
     
         String cle = "livre:" + idLivre;
         if (!jedis.exists(cle)) {
-            System.out.println("[Erreur] : Aucun livre trouvé avec l'id " + idLivre + ".");
-            
+            return false;
         }
         jedis.del(cle);
+        return true;
+    }
+
+    @Override
+    public int recupererNombreDeLivres() {
+        int nbLivres = this.recupererLivres().size();
+        if (nbLivres == 0) return 1;
+        return nbLivres;
     }
     
 }

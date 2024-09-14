@@ -13,7 +13,7 @@ public class LivreService implements ILivreService {
 
     public LivreService(ILivresRepository livresRepository) {
         this.livresRepository = livresRepository;
-        this.valeurProchainIdLivre = 0;
+        this.valeurProchainIdLivre = this.livresRepository.recupererNombreDeLivres();
     }
 
     protected int definirIdLivre() {
@@ -42,9 +42,8 @@ public class LivreService implements ILivreService {
     }
 
     @Override
-    public void supprimerLivre(int idLivre) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'supprimerLivre'");
+    public boolean supprimerLivre(int idLivre) {
+        return this.livresRepository.supprimerLivre(idLivre);
     }
 
     @Override
