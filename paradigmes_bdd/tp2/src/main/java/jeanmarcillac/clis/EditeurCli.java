@@ -3,6 +3,7 @@ package jeanmarcillac.clis;
 import java.util.Scanner;
 
 import jeanmarcillac.LivresService.ILivreService;
+import jeanmarcillac.modeles.Livre;
 
 public class EditeurCli {
     

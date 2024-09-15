@@ -54,6 +54,19 @@ public class Livre {
         return this.titre;
     }
 
+    public void setNbCopies(int nbCopies) {
+
+        if (this.nbCopies < 0 || nbCopies <= 10) {
+            System.out.println("\n[Erreur] : Le nombre de copies du livre doit etre entre 0 et 10");
+            return;
+        }
+        this.nbCopies = nbCopies;
+    }
+
+    public int getNbCopies() {
+        return this.nbCopies;
+    }
+
     public HashMap<String, Object> toHashMap() {
         HashMap<String, Object> resultat = new HashMap<>();
         resultat.put("id", this.id);

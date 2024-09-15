@@ -47,10 +47,37 @@ public class ClientCli {
             case 1 : this.menuAffichageLivres();
             break;
 
+            case 2 : this.menuRecuperationLivresLoues();
+            break;
+
+            case 3 : this.menuLocationLivre();
+            break;
+
             case 6 : System.out.println("[Infos] : Fin du programme.");
             break;
         }
         
+    }
+
+    protected void menuLocationLivre() {
+
+        System.out.println("-------------------");
+        System.out.println("Location d'un livre");
+        System.out.println("-------------------\n");
+
+        System.out.println("- - - Livres louables - - -\n");
+        this.livreService.recupererLivresLouables().forEach(livre -> {
+            System.out.println("* " + livre.getTitre() + 
+                " (Id : " + livre.getId() + "). Nb Exemplaires disponibles : " + 
+                livre.getNbCopies());
+        });
+
+        System.out.println("\n---> Id du livre que vous souhaitez louer : ");
+        int reponse = Integer.parseInt(scanner.nextLine());
+        this.clientService.louerLivre(this.idClient, reponse);
+        System.out.println("\n[Infos] : vous avez loue le livre d'id : " + reponse);
+        this.faireAvancerUtilisateur();
+        this.menuClient();     
     }
 
     protected void menuRecuperationLivresLoues() {

@@ -1,5 +1,6 @@
 package jeanmarcillac.LivresService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,15 +48,34 @@ public class LivreService implements ILivreService {
     }
 
     @Override
-    public void louerLivre(int idLivre, int idLoueur) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'louerLivre'");
+    public List<Livre> recupererLivresLouables() {
+
+        List<Livre> resultat = new ArrayList<>();
+        this.recupererTousLesLivres().forEach(livre -> {
+
+            if (livre.getNbCopies() != 0) {
+                resultat.add(livre);
+            }
+        });
+        return resultat;
     }
 
     @Override
-    public void rendreLivre(int idLivre, int idRendeur) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'rendreLivre'");
+    public void louerLivre(int idLivre) {
+        Optional<Livre> livre = this.livresRepository.recupererLivre(idLivre);
+        if (livre.isPresent()) {
+            livre.get().setNbCopies(livre.get().getNbCopies() -1);
+            this.livresRepository.sauvegarderLivre(livre.get());
+        }
+    }
+
+    @Override
+    public void rendreLivre(int idLivre) {
+        Optional<Livre> livre = this.livresRepository.recupererLivre(idLivre);
+        if (livre.isPresent()) {
+            livre.get().setNbCopies(livre.get().getNbCopies() + 1);
+            this.livresRepository.sauvegarderLivre(livre.get());
+        }
     }
 
     @Override
