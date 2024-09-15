@@ -1,4 +1,4 @@
-package main.jeanmarcillac.modeles;
+package jeanmarcillac.modeles;
 
 import java.util.HashMap;
 import java.util.Map;

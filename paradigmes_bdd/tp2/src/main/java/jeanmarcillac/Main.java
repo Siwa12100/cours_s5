@@ -1,16 +1,14 @@
-package main.jeanmarcillac;
+package jeanmarcillac;
 import java.util.Optional;
 import java.util.Scanner;
 
-import javax.net.ssl.SSLSocketFactory;
-
-import main.jeanmarcillac.LivresRepository.ILivresRepository;
-import main.jeanmarcillac.LivresRepository.RedisLivresRepository;
-import main.jeanmarcillac.LivresService.ILivreService;
-import main.jeanmarcillac.LivresService.LivreService;
-import main.jeanmarcillac.clis.ClientCli;
-import main.jeanmarcillac.clis.EditeurCli;
-import main.jeanmarcillac.modeles.Livre;
+import jeanmarcillac.LivresRepository.ILivresRepository;
+import jeanmarcillac.LivresRepository.RedisLivresRepository;
+import jeanmarcillac.LivresService.ILivreService;
+import jeanmarcillac.LivresService.LivreService;
+import jeanmarcillac.clis.ClientCli;
+import jeanmarcillac.clis.EditeurCli;
+import jeanmarcillac.modeles.Livre;
 import redis.clients.jedis.DefaultJedisClientConfig;
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.JedisClientConfig;

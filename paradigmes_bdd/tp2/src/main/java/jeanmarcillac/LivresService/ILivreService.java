@@ -1,9 +1,9 @@
-package main.jeanmarcillac.LivresService;
+package jeanmarcillac.LivresService;
 
 import java.util.List;
 import java.util.Optional;
 
-import main.jeanmarcillac.modeles.Livre;
+import jeanmarcillac.modeles.Livre;
 
 public interface ILivreService {
     

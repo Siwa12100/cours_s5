@@ -1,10 +1,10 @@
-package main.jeanmarcillac.LivresService;
+package jeanmarcillac.LivresService;
 
 import java.util.List;
 import java.util.Optional;
 
-import main.jeanmarcillac.LivresRepository.ILivresRepository;
-import main.jeanmarcillac.modeles.Livre;
+import jeanmarcillac.LivresRepository.ILivresRepository;
+import jeanmarcillac.modeles.Livre;
 
 public class LivreService implements ILivreService {
 
@@ -68,6 +68,5 @@ public class LivreService implements ILivreService {
     public void desabonnerClient(String nomClient, String channel) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'desabonnerClient'");
-    }
-    
+    }    
 }

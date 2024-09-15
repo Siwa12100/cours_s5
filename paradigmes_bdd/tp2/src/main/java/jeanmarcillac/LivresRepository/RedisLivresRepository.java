@@ -1,4 +1,4 @@
-package main.jeanmarcillac.LivresRepository;
+package jeanmarcillac.LivresRepository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-import main.jeanmarcillac.modeles.Livre;
+import jeanmarcillac.modeles.Livre;
 import redis.clients.jedis.JedisPooled;
 
 public class RedisLivresRepository implements ILivresRepository {
@@ -76,6 +76,12 @@ public class RedisLivresRepository implements ILivresRepository {
         int nbLivres = this.recupererLivres().size();
         if (nbLivres == 0) return 1;
         return nbLivres;
+    }
+
+    @Override
+    public void sauvegarderLivre(jeanmarcillac.LivresRepository.Livre livreASauvegarder) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'sauvegarderLivre'");
     }
     
 }

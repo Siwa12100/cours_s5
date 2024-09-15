@@ -1,9 +1,8 @@
-package main.jeanmarcillac.clis;
+package jeanmarcillac.clis;
 
 import java.util.Scanner;
 
-import main.jeanmarcillac.LivresService.ILivreService;
-import main.jeanmarcillac.modeles.Livre;
+import jeanmarcillac.LivresService.ILivreService;
 
 public class EditeurCli {
     
