@@ -110,6 +110,7 @@ def tri_E(liste) :
 # =======
 import matplotlib.pyplot as plt
 import time
+import numpy as np
 
 # 1.)
 # ---
@@ -122,12 +123,68 @@ import time
 
 tabTest = [1, 23, 21, 18, 17, 78, 71, 9, 1872]
 
-debut_temps = time.time()
-resultat = tri_A(list(tabTest))
-fin_temps = time.time()
-intervalle_temps = fin_temps - debut_temps
 
-print("temps mis pour tri A : " + intervalle_temps)
+tempsTriA = []
+tempsTriC = []
+tempsTriD = []
+tempsTriE = []
+tempsTriR = []
+
+
+cpt = 1000
+while cpt <= 2000 :
+    liste = list(np.random.randint(1,99,size = cpt))
+
+    debut_temps = time.time()
+    resultat = tri_A(list(liste))
+    fin_temps = time.time()
+    tempsTriA.append(fin_temps - debut_temps)
+
+    debut_temps = time.time()
+    resultat = tri_C(list(liste))
+    fin_temps = time.time()
+    tempsTriC.append(fin_temps - debut_temps)
+
+    debut_temps = time.time()
+    resultat = tri_D(list(liste))
+    fin_temps = time.time()
+    tempsTriD.append(fin_temps - debut_temps)
+
+    debut_temps = time.time()
+    resultat = tri_E(list(liste))
+    fin_temps = time.time()
+    tempsTriE.append(fin_temps - debut_temps)
+
+    debut_temps = time.time()
+    resultat = selsoro(list(liste))
+    fin_temps = time.time()
+    tempsTriR.append(fin_temps - debut_temps)
+
+
+    cpt = cpt + 1
+    # print("cpt : ", cpt)
+
+
+plt.title("Calcul du temps")
+plt.xlabel("Nombre de valeurs")
+plt.ylabel("Temps mis")
+plt.plot(tempsTriA, "green")
+plt.plot(tempsTriR, "blue")
+plt.plot(tempsTriC, "yellow")
+plt.plot(tempsTriD, "red")
+plt.plot(tempsTriE, "orange")
+
+plt.show()
+
+# debut_temps = time.time()
+# resultat = tri_A(list(tabTest))
+# fin_temps = time.time()
+# intervalle_temps = fin_temps - debut_temps
+
+# print("temps mis pour tri A : ", intervalle_temps)
+
+
+
 # print("- Test tri_A : ", tri_A(list(tabTest)))
 # print("- Test selsoro : ", selsoro(list(tabTest)))
 # print("- Test tri_C : ", tri_C(list(tabTest)))

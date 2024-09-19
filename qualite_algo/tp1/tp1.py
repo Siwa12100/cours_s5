@@ -86,8 +86,8 @@ def test_temps_fibo_Recur(n) :
 
     afficher_courbes_temps(resultats, temps)
 
-# test_temps_fibo_iter(50)
-# test_temps_fibo_Recur(50)
+test_temps_fibo_iter(50)
+test_temps_fibo_Recur(50)
 
 
 
@@ -128,42 +128,42 @@ m_courant = 0
 #     m_courant = m_courant + 1
 
 
-# Exercice 3 :
-# ============
+# # Exercice 3 :
+# # ============
 
-def exp_basique(x, n, p) : 
+# def exp_basique(x, n, p) : 
     
-    cpt = 1
-    resultat = 0
-    while cpt <= n : 
-        resultat = x * x
-        cpt = cpt + 1
+#     cpt = 1
+#     resultat = 0
+#     while cpt <= n : 
+#         resultat = x * x
+#         cpt = cpt + 1
     
-    return resultat % p
+#     return resultat % p
 
-# print("Exp_basique(4, 4, 10): ", exp_basique(4, 4, 10))
+# # print("Exp_basique(4, 4, 10): ", exp_basique(4, 4, 10))
 
-def puissance(x, n) :
+# def puissance(x, n) :
 
-    if n == 1 : 
-        return x
+#     if n == 1 : 
+#         return x
 
-    if n % 2 ==  0 :
-        return puissance(x * x, x / 2)
+#     if n % 2 ==  0 :
+#         return puissance(x * x, x / 2)
     
-    return x * puissance (x * x, (n - 1) / 2)
+#     return x * puissance (x * x, (n - 1) / 2)
 
 
-def exp_rapide(x, n, p) :
-    return puissance(x, n) % p
+# def exp_rapide(x, n, p) :
+#     return puissance(x, n) % p
 
-print("Exp_rapide(4, 4, 10): ", exp_rapide(4, 4, 10))
+# print("Exp_rapide(4, 4, 10): ", exp_rapide(4, 4, 10))
 
-debut_temps = time.time()
-exp_basique(123456789, 123456789, 987654321)
-print("test calcul avec basique. tps ---> ", time.time() - debut_temps)
+# debut_temps = time.time()
+# exp_basique(123456789, 123456789, 987654321)
+# print("test calcul avec basique. tps ---> ", time.time() - debut_temps)
 
-debut_temps = time.time()
-exp_rapide(123456789, 123456789, 987654321)
-print("test calcul avec rapide. tps ---> ", time.time() - debut_temps)
+# debut_temps = time.time()
+# exp_rapide(123456789, 123456789, 987654321)
+# print("test calcul avec rapide. tps ---> ", time.time() - debut_temps)
 
