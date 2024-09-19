@@ -77,6 +77,15 @@ MATCH (e:Etudiant), (c:cours) WHERE e.NumEtudiant = 100 And c.NumCours = 4 CREAT
 ### 5.)
 
 ```sql
+MATCH (c:cours {NumCours : 1}) -- (s:Salle) RETURN s
+```
+
+**Resultats** (A revoir...)
+
+1. (:Salle {NomSalle: "301"})
+2. (:Salle {NomSalle: "Lardy_108"})
+3. (:Salle {NomSalle: "401"})
+
 
 
 
