@@ -33,3 +33,32 @@ CREATE (s:Salle {NomSalle : "401"})
 CREATE (s:Salle {NomSalle : "Lardy_110"})
 ```
 
+### 2.)
+
+```sql
+MATCH (c:cours), (s:Salle) WHERE c.NumCours = 1 AND s.NomSalle = "301" CREATE (c)-[r:PrendPlaceA]->(s)
+MATCH (c:cours), (s:Salle) WHERE c.NumCours = 1 AND s.NomSalle = "Lardy_108" CREATE (c)-[r:PrendPlaceA]->(s)
+MATCH (c:cours), (s:Salle) WHERE c.NumCours = 1 AND s.NomSalle = "401" CREATE (c)-[r:PrendPlaceA]->(s)
+MATCH (c:cours), (s:Salle) WHERE c.NumCours = 2 AND s.NomSalle = "Amphi" CREATE (c)-[r:PrendPlaceA]->(s)
+```
+
+```sql
+MATCH (e:Etudiant), (c:cours) WHERE c.NumCours = 1 AND e.NumEtudiant = 172 CREATE (e)-[r:Suit]->(c)
+MATCH (e:Etudiant), (c:cours) WHERE c.NumCours = 1 AND e.NumEtudiant = 284 CREATE (e)-[r:Suit]->(c)
+MATCH (e:Etudiant), (c:cours) WHERE c.NumCours = 2 AND e.NumEtudiant = 145 CREATE (e)-[r:Suit]->(c)
+MATCH (e:Etudiant), (c:cours) WHERE c.NumCours = 1 AND e.NumEtudiant = 189 CREATE (e)-[r:Suit]->(c)
+```
+
+```sql
+MATCH (e:Etudiant), (p:Projet) WHERE p.NumProjet = 34 AND e.NumEtudiant = 172 CREATE (e)-[r:TravailleSur {Heure : "1"}]->(p)
+MATCH (e:Etudiant), (p:Projet) WHERE p.NumProjet = 44 AND e.NumEtudiant = 172 CREATE (e)-[r:TravailleSur {Heure : "2"}]->(p)
+MATCH (e:Etudiant), (p:Projet) WHERE p.NumProjet = 34 AND e.NumEtudiant = 284 CREATE (e)-[r:TravailleSur {Heure : "3"}]->(p)
+MATCH (e:Etudiant), (p:Projet) WHERE p.NumProjet = 44 AND e.NumEtudiant = 284 CREATE (e)-[r:TravailleSur {Heure : "4"}]->(p)
+MATCH (e:Etudiant), (p:Projet) WHERE p.NumProjet = 3 AND e.NumEtudiant = 284 CREATE (e)-[r:TravailleSur {Heure : "1"}]->(p)
+MATCH (e:Etudiant), (p:Projet) WHERE p.NumProjet = 51 AND e.NumEtudiant = 284 CREATE (e)-[r:TravailleSur {Heure : "1"}]->(p)
+MATCH (e:Etudiant), (p:Projet) WHERE p.NumProjet = 34 AND e.NumEtudiant = 145 CREATE (e)-[r:TravailleSur {Heure : "1"}]->(p)
+MATCH (e:Etudiant), (p:Projet) WHERE p.NumProjet = 44 AND e.NumEtudiant = 145 CREATE (e)-[r:TravailleSur {Heure : "2"}]->(p)
+MATCH (e:Etudiant), (p:Projet) WHERE p.NumProjet = 51 AND e.NumEtudiant = 145 CREATE (e)-[r:TravailleSur {Heure : "3"}]->(p)
+```
+
+
