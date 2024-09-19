@@ -61,4 +61,22 @@ MATCH (e:Etudiant), (p:Projet) WHERE p.NumProjet = 44 AND e.NumEtudiant = 145 CR
 MATCH (e:Etudiant), (p:Projet) WHERE p.NumProjet = 51 AND e.NumEtudiant = 145 CREATE (e)-[r:TravailleSur {Heure : "3"}]->(p)
 ```
 
+### 3.)
+
+```sql
+CREATE (e:Etudiant {NumEtudiant : 100, Nom : "Marcilhac", Prenom : "Jean"})
+```
+
+### 4.)
+
+```sql
+CREATE (c:cours {NumCours : 4, NomCours : "NoSql"})
+MATCH (e:Etudiant), (c:cours) WHERE e.NumEtudiant = 100 And c.NumCours = 4 CREATE (e)-[r:Suit]->(c)
+```
+
+### 5.)
+
+```sql
+
+
 
