@@ -1,5 +1,4 @@
 package jeanmarcillac;
-import java.util.Optional;
 import java.util.Scanner;
 
 import jeanmarcillac.ClientService.ClientService;
@@ -10,7 +9,6 @@ import jeanmarcillac.LivresService.ILivreService;
 import jeanmarcillac.LivresService.LivreService;
 import jeanmarcillac.clis.ClientCli;
 import jeanmarcillac.clis.EditeurCli;
-import jeanmarcillac.modeles.Livre;
 import redis.clients.jedis.DefaultJedisClientConfig;
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.JedisClientConfig;

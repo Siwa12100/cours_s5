@@ -39,6 +39,12 @@ public class ClientService implements IClientService {
     public boolean louerLivre(int idClient, int idLivre) {
 
         if (this.livreService.recupererLivre(idLivre).isEmpty()) {
+            System.out.println("[Erreur] : Le livre d'id " + idLivre + " ne peut pas etre loue.");
+            return false;
+        }
+
+        if (this.locationsClients.get(idClient).contains(idLivre)) {
+            System.out.println("[Erreur] : Vous louez deja un exemplaire du livre d'id " + idLivre);
             return false;
         }
 

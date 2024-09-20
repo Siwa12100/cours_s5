@@ -72,12 +72,36 @@ public class ClientCli {
                 livre.getNbCopies());
         });
 
-        System.out.println("\n---> Id du livre que vous souhaitez louer : ");
+        System.out.print("\n---> Id du livre que vous souhaitez louer (0 pour retourner en arriere): ");
         int reponse = Integer.parseInt(scanner.nextLine());
-        this.clientService.louerLivre(this.idClient, reponse);
-        System.out.println("\n[Infos] : vous avez loue le livre d'id : " + reponse);
+        
+        if (this.clientService.louerLivre(this.idClient, reponse)) {
+            System.out.println("\n[Infos] : vous avez loue le livre d'id : " + reponse);
+        }        
         this.faireAvancerUtilisateur();
         this.menuClient();     
+    }
+
+    protected void menuRenteLivre() {
+        
+        System.out.println("----------------");
+        System.out.println("Rendu d'un livre");
+        System.out.println("----------------\n");
+
+        System.out.println("- - - Livres en votre possession - - -\n");
+        this.livreService.recupererLivresLoues().forEach(livre -> {
+            System.out.println("* " + livre.getTitre() + "(Id : " + livre.getId() + ")");
+        });
+
+        System.out.print("\n---> Id du livre que vous souhaitez rendre (0 pour retourner en arriere): ");
+        int reponse = Integer.parseInt(scanner.nextLine());
+
+        if (this.clientService.rendreLivre(idClient, reponse)) {
+            System.out.println("[Infos] : vous avez rendu le livre d'id " + reponse);
+        }
+
+        this.faireAvancerUtilisateur();
+        this.menuClient();
     }
 
     protected void menuRecuperationLivresLoues() {

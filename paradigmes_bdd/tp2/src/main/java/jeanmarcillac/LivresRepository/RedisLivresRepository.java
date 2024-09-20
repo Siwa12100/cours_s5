@@ -38,7 +38,7 @@ public class RedisLivresRepository implements ILivresRepository {
         Map<String, String> livreData = jedis.hgetAll(livreKey);
 
         if (livreData.isEmpty()) {
-            return null;
+            return Optional.ofNullable(null);
         }
 
         Livre resultat = new Livre(livreData);
@@ -76,12 +76,5 @@ public class RedisLivresRepository implements ILivresRepository {
         int nbLivres = this.recupererLivres().size();
         if (nbLivres == 0) return 1;
         return nbLivres;
-    }
-
-    @Override
-    public void sauvegarderLivre(jeanmarcillac.LivresRepository.Livre livreASauvegarder) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'sauvegarderLivre'");
-    }
-    
+    }    
 }

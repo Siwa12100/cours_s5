@@ -13,7 +13,7 @@ public class Livre {
     protected String editeur;
     protected int nbCopies;
 
-    public static final int dureeVieLivreEnSecondes = 20000;
+    public static final int dureeVieLivreEnSecondes = 60 * 60 * 24;
     protected static final int valeurIdNonDefini = -1;
 
     public Livre(int id, int isbn, String titre, String auteur, String nature, String editeur, int nbCopies) {
@@ -56,7 +56,7 @@ public class Livre {
 
     public void setNbCopies(int nbCopies) {
 
-        if (this.nbCopies < 0 || nbCopies <= 10) {
+        if (this.nbCopies < 0 || nbCopies > 10) {
             System.out.println("\n[Erreur] : Le nombre de copies du livre doit etre entre 0 et 10");
             return;
         }

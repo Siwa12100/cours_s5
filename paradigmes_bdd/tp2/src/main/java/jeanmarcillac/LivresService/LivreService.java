@@ -61,21 +61,30 @@ public class LivreService implements ILivreService {
     }
 
     @Override
-    public void louerLivre(int idLivre) {
+    public boolean louerLivre(int idLivre) {
+
         Optional<Livre> livre = this.livresRepository.recupererLivre(idLivre);
         if (livre.isPresent()) {
             livre.get().setNbCopies(livre.get().getNbCopies() -1);
             this.livresRepository.sauvegarderLivre(livre.get());
+            return true;
         }
+
+        System.out.println("Le livre d'id " + idLivre + " n'est pas reconnu.");
+        return false;
     }
 
     @Override
-    public void rendreLivre(int idLivre) {
+    public boolean rendreLivre(int idLivre) {
         Optional<Livre> livre = this.livresRepository.recupererLivre(idLivre);
         if (livre.isPresent()) {
             livre.get().setNbCopies(livre.get().getNbCopies() + 1);
             this.livresRepository.sauvegarderLivre(livre.get());
+            return true;
         }
+
+        System.out.println("Le livre d'id " + idLivre + " n'est pas reconnu");
+        return false;
     }
 
     @Override
