@@ -73,14 +73,17 @@ public class EditeurCli {
         System.out.println("Suppression d'un livre");
         System.out.println("-----------------------\n");
 
-        System.out.println("- - - - - - Tous les livres : - - - - -");
+        System.out.println("- - - - - - Tous les livres : - - - - -\n");
         this.livreService.recupererTousLesLivres().forEach(livre -> {
 
-            System.out.println(" * Id : " + livre.getId() + "| Titre : " + livre.getTitre() + ".\n");
+            System.out.println(" * Id : " + livre.getId() + "| Titre : " + livre.getTitre() + ".");
         });
 
-        System.out.print("\n---> Id du livre a supprimer : ");
+        System.out.print("\n---> Id du livre a supprimer (0 pour annuler): ");
         int reponse = Integer.parseInt(scanner.nextLine());
+        if (reponse == 0) {
+            this.menuEditeur();
+        }
         boolean resultat = this.livreService.supprimerLivre(reponse);
 
         if (resultat) {

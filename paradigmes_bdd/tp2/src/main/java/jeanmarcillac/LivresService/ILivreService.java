@@ -11,7 +11,6 @@ public interface ILivreService {
     Optional<Livre> recupererLivre(int idLivreARecuperer);
     List<Livre> recupererTousLesLivres();
     List<Livre> recupererLivresLouables();
-    List<Livre> recupererLivresLoues();
     boolean supprimerLivre(int idLivre);
     boolean louerLivre(int idLivre);
     boolean rendreLivre(int idLivre);

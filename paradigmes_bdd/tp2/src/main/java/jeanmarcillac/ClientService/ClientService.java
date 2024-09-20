@@ -1,24 +1,34 @@
 package jeanmarcillac.ClientService;
 
+import java.lang.StackWalker.Option;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
+import jeanmarcillac.ClientRepository.IClientRepository;
 import jeanmarcillac.LivresService.ILivreService;
 import jeanmarcillac.modeles.Livre;
 
 public class ClientService implements IClientService {
 
     protected ILivreService livreService;
+    protected IClientRepository clientRepository;
     protected Map<Integer, List<Integer>> locationsClients;
 
-    public ClientService(ILivreService livreService) {
+    public ClientService(ILivreService livreService, IClientRepository clientRepository) {
         this.livreService = livreService;
-        this.locationsClients = new HashMap<>();
-        this.locationsClients.put(1, new ArrayList<>());
-        this.locationsClients.put(2, new ArrayList<>());
-        this.locationsClients.put(3, new ArrayList<>());
+        this.clientRepository = clientRepository;
+
+        this.clientRepository.recupererDonneesClients().ifPresentOrElse(donnees -> {
+            this.locationsClients = donnees;
+        }, () -> {
+            this.locationsClients = new HashMap<>();
+            this.locationsClients.put(1, new ArrayList<>());
+            this.locationsClients.put(2, new ArrayList<>());
+            this.locationsClients.put(3, new ArrayList<>());
+        });        
     }
 
     @Override
@@ -50,6 +60,7 @@ public class ClientService implements IClientService {
 
         this.locationsClients.get(idClient).add(idLivre);
         this.livreService.louerLivre(idLivre);
+        this.clientRepository.sauvegarderDonneesClients(locationsClients);
         return true;
     }
 
@@ -61,7 +72,9 @@ public class ClientService implements IClientService {
             return false;
         }
 
-        this.locationsClients.get(idClient).remove(idLivre);
+        this.locationsClients.get(idClient).remove(this.locationsClients.get(idClient).indexOf(idLivre));
+        this.livreService.rendreLivre(idLivre);
+        this.clientRepository.sauvegarderDonneesClients(locationsClients);
         return true;
     }
 }

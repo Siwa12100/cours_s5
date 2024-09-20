@@ -1,6 +1,8 @@
 package jeanmarcillac;
 import java.util.Scanner;
 
+import jeanmarcillac.ClientRepository.ClientRepository;
+import jeanmarcillac.ClientRepository.IClientRepository;
 import jeanmarcillac.ClientService.ClientService;
 import jeanmarcillac.ClientService.IClientService;
 import jeanmarcillac.LivresRepository.ILivresRepository;
@@ -22,7 +24,8 @@ public class Main {
         JedisPooled jedis = initialisationJedis("149.7.5.30", 6379, "senhal");
         ILivresRepository livresRepository = new RedisLivresRepository(jedis);
         ILivreService livreService = new LivreService(livresRepository);
-        IClientService clientService = new ClientService(livreService);
+        IClientRepository clientRepository = new ClientRepository(jedis);
+        IClientService clientService = new ClientService(livreService, clientRepository);
         EditeurCli editeurCli = new EditeurCli(scanner, livreService);
         ClientCli clientCli = new ClientCli(scanner, livreService, clientService);
         lancementCli(scanner, editeurCli, clientCli);
