@@ -1,6 +1,5 @@
 package jeanmarcillac.ClientService;
 
-import java.lang.StackWalker.Option;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,9 +42,6 @@ public class ClientService implements IClientService {
     public List<Livre> recupererLivresLoues(int idClient) {
 
         List<Livre> resultats = new ArrayList<>();
-
-        System.out.println(idClient);
-        System.out.println(this.locationsClients.toString());
         this.locationsClients.get(idClient).forEach(idLivre -> {
 
             this.livreService.recupererLivre(idLivre).ifPresent(livre -> {
@@ -59,10 +55,8 @@ public class ClientService implements IClientService {
     @Override
     public boolean louerLivre(int idClient, int idLivre) {
 
-        System.out.println(idClient);
-        System.out.println(this.locationsClients.toString());
-
-        if (this.livreService.recupererLivre(idLivre).isEmpty()) {
+        Optional<Livre> livreALouer = this.livreService.recupererLivre(idLivre);
+        if (livreALouer.isEmpty()) {
             System.out.println("[Erreur] : Le livre d'id " + idLivre + " ne peut pas etre loue.");
             return false;
         }
@@ -71,6 +65,13 @@ public class ClientService implements IClientService {
             System.out.println("[Erreur] : Vous louez deja un exemplaire du livre d'id " + idLivre);
             return false;
         }
+
+        livreALouer.ifPresent((livre) -> {
+            if (livre.getNbCopies() <= 0) {
+                System.out.println("[Erreur] : Plus de copies disponibles du livre, location impossible");
+                return;
+            }
+        });
 
         this.locationsClients.get(idClient).add(idLivre);
         this.livreService.louerLivre(idLivre);

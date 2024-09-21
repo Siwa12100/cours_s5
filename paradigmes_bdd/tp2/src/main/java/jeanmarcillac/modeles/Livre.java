@@ -13,7 +13,7 @@ public class Livre {
     protected String editeur;
     protected int nbCopies;
 
-    public static final long dureeVieLivreEnSecondes = 60 * 60 * 24;
+    public static final long dureeVieLivreEnSecondes = 9600000;
     protected static final int valeurIdNonDefini = -1;
 
     public Livre(int id, int isbn, String titre, String auteur, String nature, String editeur, int nbCopies) {

@@ -55,7 +55,7 @@ public class RedisClientRepository implements IClientRepository {
             jedisPooled.del(clientKey);
             
             if (entry.getValue().isEmpty()) {
-                jedisPooled.rpush(clientKey, "");  // Insérer une valeur vide pour maintenir la clé
+                jedisPooled.rpush(clientKey, "");
             } else {
                 for (Integer valeur : entry.getValue()) {
                     jedisPooled.rpush(clientKey, valeur.toString());
