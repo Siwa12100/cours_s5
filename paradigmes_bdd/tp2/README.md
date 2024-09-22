@@ -1,4 +1,4 @@
-# Projet Redis - Jean Marcillac
+# Projet Redis - Jean Marcillac WEB 1 
 
 ## Fonctionnalités
 
