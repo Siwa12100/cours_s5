@@ -60,6 +60,7 @@ public class Main {
                 break;
             }
         } while (resultat != 3);
+
     }
 
     protected static JedisPooled initialisationJedis(String ip, int port, String mdp) {

@@ -14,6 +14,7 @@ public class AbonnementService implements IAbonnementService {
     protected Optional<String> channelSuiviParClientCourant;
     protected String filtreDuClientCourant;
     protected List<String> tousLesChannelsDisponibles;
+    Thread thread;
     JedisPubSub jedisPubSub;
     protected int idClientCourant;
 
@@ -33,12 +34,13 @@ public class AbonnementService implements IAbonnementService {
             }
         };
 
-        new Thread(() -> {
+        thread = new Thread(() -> {
             this.tousLesChannelsDisponibles.forEach(channel -> {
                 jedisPooled.subscribe(this.jedisPubSub, channel);
             });
     
-        }).start();        
+        });
+        thread.start();        
     }
 
 
