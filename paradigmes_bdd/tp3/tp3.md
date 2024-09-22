@@ -1,8 +1,6 @@
-# TP 3 - NoSQL Base de donn´ees graphe
+# TP 3 - NoSQL Base de données graphe
 
-## Reponses
-
-### 1.)
+## 1.) Création des nœuds
 
 ```sql
 CREATE (e:Etudiant {NumEtudiant : 172, Nom : 'Richard', Prenom : 'Ana', Prenom2 : 'Maria' })
@@ -33,7 +31,7 @@ CREATE (s:Salle {NomSalle : "401"})
 CREATE (s:Salle {NomSalle : "Lardy_110"})
 ```
 
-### 2.)
+## 2.) Création des relations
 
 ```sql
 MATCH (c:cours), (s:Salle) WHERE c.NumCours = 1 AND s.NomSalle = "301" CREATE (c)-[r:PrendPlaceA]->(s)
@@ -61,31 +59,78 @@ MATCH (e:Etudiant), (p:Projet) WHERE p.NumProjet = 44 AND e.NumEtudiant = 145 CR
 MATCH (e:Etudiant), (p:Projet) WHERE p.NumProjet = 51 AND e.NumEtudiant = 145 CREATE (e)-[r:TravailleSur {Heure : "3"}]->(p)
 ```
 
-### 3.)
+## 3.) Ajouter un autre étudiant portant votre nom et prénom
 
 ```sql
 CREATE (e:Etudiant {NumEtudiant : 100, Nom : "Marcilhac", Prenom : "Jean"})
 ```
 
-### 4.)
+## 4.) Créer le cours C4 et lier l’étudiant à ce cours
 
 ```sql
 CREATE (c:cours {NumCours : 4, NomCours : "NoSql"})
 MATCH (e:Etudiant), (c:cours) WHERE e.NumEtudiant = 100 And c.NumCours = 4 CREATE (e)-[r:Suit]->(c)
 ```
 
-### 5.)
+## 5.) Dans quelles salles les cours avec le numéro de cours ”1” ont-ils lieu?
 
 ```sql
-MATCH (c:cours {NumCours : 1}) -- (s:Salle) RETURN s
+MATCH (c:cours {NumCours : 1}) -- (s:Salle) 
+RETURN c.NomCours, s.NomSalle
 ```
 
-**Resultats** (A revoir...)
+## 6.) Combien d’heures et dans quels projets l’étudiant avec le numéro d’étudiant ”172” travaille-t-il?
 
-1. (:Salle {NomSalle: "301"})
-2. (:Salle {NomSalle: "Lardy_108"})
-3. (:Salle {NomSalle: "401"})
+```sql
+MATCH (e:Etudiant {NumEtudiant: 172})-[r:TravailleSur]->(p:Projet)
+RETURN e.Prenom, p.NomProjet, r.Heure
+```
 
+## 7.) Quels étudiants et combien d’heures travaillent-ils sur le projet portant le numéro de projet ’51’?
 
+```sql
+MATCH (e:Etudiant)-[r:TravailleSur]->(p:Projet {NumProjet: 51})
+RETURN p.NomProjet, e.Nom, r.Heure
+```
 
+## 8.) Quels étudiants travaillent dans quels projets et combien d’heures?
 
+```sql
+MATCH (e:Etudiant)-[r:TravailleSur]->(p:Projet)
+RETURN e.Nom, p.NomProjet, r.Heure
+ORDER BY e.Nom
+LIMIT 4
+```
+
+## 9.) Quels étudiants travaillent sur plus de deux projets et sur combien de projets exactement?
+
+```sql
+MATCH (e:Etudiant)-[r:TravailleSur]->(p:Projet)
+WITH e, COUNT(p) as NbProjets
+WHERE NbProjets > 2
+RETURN e.Nom, NbProjets
+ORDER BY NbProjets DESC
+```
+
+## 10.) Quels étudiants ont le même nom de famille et travaillent sur les mêmes projets?
+
+```sql
+MATCH (e1:Etudiant)-[r1:TravailleSur]->(p:Projet)<-[r2:TravailleSur]-(e2:Etudiant)
+WHERE e1.Nom = e2.Nom AND e1.NumEtudiant <> e2.NumEtudiant
+RETURN e1.Prenom, e2.Prenom, p.NomProjet
+```
+
+## 11.) Quelle est la durée moyenne que les étudiants passent sur un projet?
+
+```sql
+MATCH (e:Etudiant)-[r:TravailleSur]->(p:Projet)
+RETURN AVG(TOFLOAT(r.Heure)) AS DureeMoyenne
+```
+
+## 12.) Quels étudiants suivent le même cours et travaillent sur le même projet?
+
+```sql
+MATCH (e1:Etudiant)-[:Suit]->(c:cours)<-[:Suit]-(e2:Etudiant),
+      (e1)-[:TravailleSur]->(p:Projet)<-[:TravailleSur]-(e2)
+RETURN e1.Prenom, e2.Prenom, c.NomCours, p.NomProjet
+```
