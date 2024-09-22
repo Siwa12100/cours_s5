@@ -45,8 +45,7 @@ public class EditeurCli {
             case 3 : this.menuAffichageLivres();
             break;
 
-            case 4 : System.out.println("\n[Infos] : fin du programme.");
-            break;
+            case 4 : break;
 
             default : System.out.println("[Probleme] : entree inconnue.");
         }
@@ -81,17 +80,15 @@ public class EditeurCli {
 
         System.out.print("\n---> Id du livre a supprimer (0 pour annuler): ");
         int reponse = Integer.parseInt(scanner.nextLine());
-        if (reponse == 0) {
-            this.menuEditeur();
-        } else {
-
+        if (reponse != 0) {
+            
             boolean resultat = this.livreService.supprimerLivre(reponse);
             if (resultat) {
                 System.out.println("\n[Infos] : Le livre d'id " + reponse + " bien supprime.");
             } else {
                 System.out.println("\n[Erreur] : Aucun livre trouvé avec l'id " + reponse + ".");
             }
-        }       
+        }    
 
         this.faireAvancerUtilisateur();
         this.menuEditeur();
