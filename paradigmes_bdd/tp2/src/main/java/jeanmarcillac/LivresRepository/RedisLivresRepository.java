@@ -29,6 +29,7 @@ public class RedisLivresRepository implements ILivresRepository {
         }
 
         jedis.expire(cleLivre, Livre.dureeVieLivreEnSecondes);
+        this.notifierLivreSauvegarde(livreASauvegarder);
     }
 
     @Override
@@ -68,6 +69,10 @@ public class RedisLivresRepository implements ILivresRepository {
             return false;
         }
         jedis.del(cle);
+        this.recupererLivre(idLivre).ifPresent(livre -> {
+            this.notifierLivreSupprime(livre);
+        });
+
         return true;
     }
 
@@ -76,5 +81,21 @@ public class RedisLivresRepository implements ILivresRepository {
         int nbLivres = this.recupererLivres().size();
         if (nbLivres == 0) return 1;
         return nbLivres;
-    }    
+    }
+
+    protected void notifierLivreSauvegarde(Livre livre) {
+        jedis.publish("titre", livre.getTitre() + ". Le livre " + livre.getTitre() + " (id : " + livre.getId() +") vient d'etre sauvegarde.");
+        jedis.publish("auteur", livre.getAuteur() + ". Le livre " + livre.getTitre() + " (id : " + livre.getId() + " et d'auteur " + livre.getAuteur() + " vient d'etre sauvegarde.");
+        jedis.publish("nature", livre.getTitre() + ". Le livre " + livre.getTitre() + " (id : " + livre.getId() +") et de nature " + livre.getNature() + " vient d'etre sauvegarde.");
+        jedis.publish("isbn", livre.getTitre() + ". Le livre " + livre.getTitre() + " (id : " + livre.getId() +") et d'isbn + " + livre.getIsbn() + " vient d'etre sauvegarde.");
+        jedis.publish("edition", livre.getTitre() + ". Le livre " + livre.getTitre() + " (id : " + livre.getId() +") et d'editeur " + livre.getEditeur() + " vient d'etre sauvegarde.");
+    }
+
+    protected void notifierLivreSupprime(Livre livre) {
+        jedis.publish("titre", livre.getTitre() + ". Le livre " + livre.getTitre() + " (id : " + livre.getId() +") vient d'etre supprime.");
+        jedis.publish("auteur", livre.getAuteur() + ". Le livre " + livre.getTitre() + " (id : " + livre.getId() + " et d'auteur " + livre.getAuteur() + " vient d'etre supprime.");
+        jedis.publish("nature", livre.getTitre() + ". Le livre " + livre.getTitre() + " (id : " + livre.getId() +") et de nature " + livre.getNature() + " vient d'etre supprime.");
+        jedis.publish("isbn", livre.getTitre() + ". Le livre " + livre.getTitre() + " (id : " + livre.getId() +") et d'isbn + " + livre.getIsbn() + " vient d'etre supprime.");
+        jedis.publish("edition", livre.getTitre() + ". Le livre " + livre.getTitre() + " (id : " + livre.getId() +") et d'editeur " + livre.getEditeur() + " vient d'etre supprime.");
+    }
 }

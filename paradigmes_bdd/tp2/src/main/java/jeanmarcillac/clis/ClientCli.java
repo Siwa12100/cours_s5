@@ -3,6 +3,7 @@ package jeanmarcillac.clis;
 import java.util.List;
 import java.util.Scanner;
 
+import jeanmarcillac.AbonnementService.IAbonnementService;
 import jeanmarcillac.ClientService.IClientService;
 import jeanmarcillac.LivresService.ILivreService;
 import jeanmarcillac.modeles.Livre;
@@ -10,14 +11,16 @@ import jeanmarcillac.modeles.Livre;
 public class ClientCli {
     
     protected ILivreService livreService;
-    protected Scanner scanner;
     protected IClientService clientService;
+    protected IAbonnementService abonnementService;
+    protected Scanner scanner;
     protected int idClient = 0;
 
-    public ClientCli(Scanner scanner, ILivreService livreService, IClientService clientService) {
+    public ClientCli(Scanner scanner, ILivreService livreService, IClientService clientService, IAbonnementService abonnementService) {
         this.livreService = livreService;
         this.scanner = scanner;
         this.clientService = clientService;
+        this.abonnementService = abonnementService;
     }
 
     public void menuClient() {
@@ -60,6 +63,85 @@ public class ClientCli {
             break;
         }
         
+    }
+
+    protected void menuAbonnementCannal() {
+
+        System.out.println("------------------------------------------");
+        System.out.println("A Quel canal souhaitez-vous vous abonner ?");
+        System.out.println("------------------------------------------\n");
+
+        System.out.println("1.) Auteur");
+        System.out.println("2.) Titre");
+        System.out.println("3.) Maison d'edition");
+        System.out.println("4.) Isbn");
+        System.out.println("5.) Nature");
+        System.out.println("6.) Retour au menu");
+
+        System.out.print("---> Votre reponse : ");
+
+        int reponse = Integer.parseInt(this.scanner.nextLine());
+
+        if (reponse == 6) {
+            return;
+        }
+
+        this.nettoyerTerminal();
+
+        System.out.println("---------------------------------------------------------");
+        System.out.println("Choix du filtrage des informations publiees dans le canal");
+        System.out.println("--------------------------------------------------------- \n");
+
+        switch (reponse) {
+            case 1 : System.out.print("Par quel nom d'auteur souhaitez-vous filtrer les retours du channel ? ---->  ");                
+            break;
+
+            case 2 : System.out.print("Par quel titre de livre souhaitez-vous filtrer les retours du channel ? ----> ");
+            break;
+
+            case 3 : System.out.print("Par quelle maison d'edition souhaitez-vous filtrer les retours du channel ? ----> ");
+            break;
+
+            case 4 : System.out.print("Par quel ISBN souhaitez-vous filtrer les retours du channel ? ----> ");
+            break;
+
+            case 5 : System.out.print("Par quelle nature de livre souhaitez-vous filtrer les retours du channel ? ");
+            break;
+        
+            default:
+            break;
+        }
+
+        String filtreChoisi = this.scanner.nextLine();
+        String channel = null;
+        switch (reponse) {
+            case 1: channel = "auteur";             
+            break;
+        
+            case 2 : channel = "titre";
+            break;
+
+            case 3 : channel = "edition";
+            break;
+            
+            case 4 : channel = "isbn";
+            break;
+
+            case 5 : channel = "nature";
+            break;
+
+            default:
+            break;
+        }
+        this.abonnementService.abonnerClient(channel, filtreChoisi);
+        System.out.println("--------------------------------------------------------------------------");
+        System.out.println("Ecoute sur le channel " + channel + " avec comme filtre : " + filtreChoisi);
+        System.out.println("--------------------------------------------------------------------------");
+
+        int retour = 1;
+        do {
+            retour = Integer.parseInt(this.scanner.nextLine());
+        } while (retour != 0);
     }
 
     protected void menuLocationLivre() {

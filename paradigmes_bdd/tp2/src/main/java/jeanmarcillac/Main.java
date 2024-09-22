@@ -2,6 +2,8 @@ package jeanmarcillac;
 import java.util.Scanner;
 
 import jeanmarcillac.ClientRepository.RedisClientRepository;
+import jeanmarcillac.AbonnementService.AbonnementService;
+import jeanmarcillac.AbonnementService.IAbonnementService;
 import jeanmarcillac.ClientRepository.IClientRepository;
 import jeanmarcillac.ClientService.ClientService;
 import jeanmarcillac.ClientService.IClientService;
@@ -27,7 +29,8 @@ public class Main {
         IClientRepository clientRepository = new RedisClientRepository(jedis);
         IClientService clientService = new ClientService(livreService, clientRepository);
         EditeurCli editeurCli = new EditeurCli(scanner, livreService);
-        ClientCli clientCli = new ClientCli(scanner, livreService, clientService);
+        IAbonnementService abonnementService = new AbonnementService();
+        ClientCli clientCli = new ClientCli(scanner, livreService, clientService, abonnementService);
         lancementCli(scanner, editeurCli, clientCli);
         jedis.close();
     }

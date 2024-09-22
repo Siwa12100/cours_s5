@@ -14,6 +14,4 @@ public interface ILivreService {
     boolean supprimerLivre(int idLivre);
     boolean louerLivre(int idLivre);
     boolean rendreLivre(int idLivre);
-    void abonnerClient(String nomClient, String channel);
-    void desabonnerClient(String nomClient, String channel);
 }

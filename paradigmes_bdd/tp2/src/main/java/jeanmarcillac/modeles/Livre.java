@@ -46,6 +46,22 @@ public class Livre {
         return this.id;
     }
 
+    public String getAuteur() {
+        return this.auteur;
+    }
+
+    public String getNature() {
+        return this.nature;
+    }
+
+    public String getIsbn() {
+        return Integer.toString(this.isbn);
+    }
+
+    public String getEditeur() {
+        return this.editeur;
+    }
+
     public void setId(int id) {
         this.id = id;
     }

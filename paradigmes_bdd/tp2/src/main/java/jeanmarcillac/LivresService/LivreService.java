@@ -85,17 +85,5 @@ public class LivreService implements ILivreService {
 
         System.out.println("Le livre d'id " + idLivre + " n'est pas reconnu");
         return false;
-    }
-
-    @Override
-    public void abonnerClient(String nomClient, String channel) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'abonnerClient'");
-    }
-
-    @Override
-    public void desabonnerClient(String nomClient, String channel) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'desabonnerClient'");
-    }    
+    }   
 }
