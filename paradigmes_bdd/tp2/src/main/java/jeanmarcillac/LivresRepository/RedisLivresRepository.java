@@ -68,11 +68,12 @@ public class RedisLivresRepository implements ILivresRepository {
         if (!jedis.exists(cle)) {
             return false;
         }
-        jedis.del(cle);
+        
         this.recupererLivre(idLivre).ifPresent(livre -> {
             this.notifierLivreSupprime(livre);
         });
 
+        jedis.del(cle);
         return true;
     }
 

@@ -59,6 +59,9 @@ public class ClientCli {
             case 4 : this.menuRenteLivre();
             break;
 
+            case 5 : this.menuAbonnementCannal();
+            break;
+
             case 6 : System.out.println("[Infos] : Fin du programme.");
             break;
         }
@@ -78,7 +81,7 @@ public class ClientCli {
         System.out.println("5.) Nature");
         System.out.println("6.) Retour au menu");
 
-        System.out.print("---> Votre reponse : ");
+        System.out.print("\n---> Votre reponse : ");
 
         int reponse = Integer.parseInt(this.scanner.nextLine());
 
@@ -105,7 +108,7 @@ public class ClientCli {
             case 4 : System.out.print("Par quel ISBN souhaitez-vous filtrer les retours du channel ? ----> ");
             break;
 
-            case 5 : System.out.print("Par quelle nature de livre souhaitez-vous filtrer les retours du channel ? ");
+            case 5 : System.out.print("Par quelle nature de livre souhaitez-vous filtrer les retours du channel ? ----> ");
             break;
         
             default:
@@ -134,14 +137,21 @@ public class ClientCli {
             break;
         }
         this.abonnementService.abonnerClient(channel, filtreChoisi);
-        System.out.println("--------------------------------------------------------------------------");
-        System.out.println("Ecoute sur le channel " + channel + " avec comme filtre : " + filtreChoisi);
-        System.out.println("--------------------------------------------------------------------------");
+        this.nettoyerTerminal();
+        System.out.println("--------------------------");
+        System.out.println("Ecoute de channel en cours");
+        System.out.println("--------------------------\n");
+
+        System.out.println("- - - Channel : " + channel + "  |  Filtre : " + filtreChoisi + " - - -\n\n");
+        System.out.print("(Entrez 0 pour quitter) > ");
 
         int retour = 1;
         do {
             retour = Integer.parseInt(this.scanner.nextLine());
         } while (retour != 0);
+
+        this.nettoyerTerminal();
+        this.menuClient();
     }
 
     protected void menuLocationLivre() {

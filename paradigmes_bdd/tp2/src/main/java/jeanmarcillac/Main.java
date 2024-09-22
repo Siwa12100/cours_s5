@@ -29,7 +29,7 @@ public class Main {
         IClientRepository clientRepository = new RedisClientRepository(jedis);
         IClientService clientService = new ClientService(livreService, clientRepository);
         EditeurCli editeurCli = new EditeurCli(scanner, livreService);
-        IAbonnementService abonnementService = new AbonnementService();
+        IAbonnementService abonnementService = new AbonnementService(jedis);
         ClientCli clientCli = new ClientCli(scanner, livreService, clientService, abonnementService);
         lancementCli(scanner, editeurCli, clientCli);
         jedis.close();

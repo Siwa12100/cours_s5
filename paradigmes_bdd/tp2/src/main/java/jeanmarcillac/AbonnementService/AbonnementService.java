@@ -55,22 +55,35 @@ public class AbonnementService implements IAbonnementService {
 
     @Override
     public void desabonnerClient() {
-        this.channelSuiviParClientCourant = null;
+        this.channelSuiviParClientCourant = Optional.ofNullable(null);
     }
 
     protected void gererArriveeMessage(String channel, String message)  {
 
+        if (this.channelSuiviParClientCourant == null) return;
+
         this.channelSuiviParClientCourant.ifPresent((channelDuClient) -> {
             
             if (this.verifierMessagePasseFiltre(message)) {
-                System.out.println("\n[Channel : " + channelDuClient + "] ---> " + message);
+                System.out.println(this.mettreAuPropreMessage(message));
                 System.out.print("(Entrez 0 pour quitter) > ");
             }
         });
     }
 
     protected boolean verifierMessagePasseFiltre(String message) {
-        return true;
+
+        if (filtreDuClientCourant == null) {
+            return false;
+        }
+        return message.split("\\.", 2)[0].trim().equalsIgnoreCase(this.filtreDuClientCourant);
     }
-    
+
+    protected String mettreAuPropreMessage(String message) {
+        int indexPoint = message.indexOf('.');
+        if (indexPoint == -1) {
+            return message;
+        }
+        return message.substring(indexPoint + 1).trim();
+    }
 }
