@@ -1,0 +1,20 @@
+<p>Un formulaire reactive-driven avec affichage en console</p>
+   
+<form [formGroup]="bookForm">
+    <div>
+        <label for="title">Titre</label>
+        <input type="text" id="title" formControlName="title" />
+    </div>
+    
+    <div>
+        <label for="author">Auteur</label>
+        <input type="text" id="author" formControlName="author" />
+    </div>
+    
+    <div>
+        <label for="publicationDate">Date de publication</label>
+        <input type="picker" id="publicationDate" formControlName="publicationDate" />
+    </div>
+
+    <button type="button" (click)="addBook()">Add</button>
+</form>
