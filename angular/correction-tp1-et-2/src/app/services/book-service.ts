@@ -14,7 +14,7 @@ export class BookService {
         return this.books;
     }    
 
-    addBook(book: Book): void{
+    addBook(book: Book): void {
         if(book.id === 0){
             book.id = Math.max(...this.books.map(b => b.id)) + 1;
         }
