@@ -1,5 +1,0 @@
-[
-    { "id": 1, "titre": "Book 1", "auteur": "Author 1", "datePublication": "2023-01-01" },
-    { "id": 2, "titre": "Book 2", "auteur": "Author 2", "datePublication": "2022-05-15" },
-    { "id": 3, "titre": "Book 3", "auteur": "Author 3", "datePublication": "2021-09-10" }
-  ]
