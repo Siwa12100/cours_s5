@@ -1,2 +1,12 @@
 <p class="rouge">Navbar du projet ! </p>
 <h3>Resultat du service : {{message}}</h3>
+
+@if (valeur == 17) {
+    <p> Valeur bien égale à 17</p>
+
+    @for (coucou of camion; track coucou) {
+        <p> - {{coucou}} </p>
+    }
+}
+
+
