@@ -55,10 +55,22 @@ def MonnaieProgDyn(n, L) :
     return valeurs 
 
 
-# ret = MonnaieProgDyn(30, ListePiecesBillets)
+ret = MonnaieProgDyn(300000, ListePiecesBillets)
 
-# cpt = 0
-# for valeur in ret :
-#     print("v ---> ", valeur, "res ---> ", MonnaieRec(cpt, ListePiecesBillets.copy()))
-#     cpt+= 1
+cpt = 0
+for valeur in ret :
+    print("v ---> ", valeur, "res ---> ", MonnaieRec(cpt, ListePiecesBillets.copy()))
+    cpt+= 1
 
+
+
+
+
+
+# ============
+# Exercice 2 :
+# ============
+
+def SaveHumanity(A, budget) :
+    
+    
