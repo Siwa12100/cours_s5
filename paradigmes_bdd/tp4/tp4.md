@@ -1,7 +1,5 @@
 # TP - Analyse des Ventes avec Hadoop
 
-Ce TP consiste à traiter un fichier CSV contenant des données de ventes à l'aide de Hadoop et de la programmation **MapReduce**. Nous allons écrire les fonctions Map et Reduce pour chaque tâche et les exécuter en Hadoop.
-
 Le fichier `sales.csv` contient plusieurs colonnes, dont celles qui nous intéressent sont :
 - **Région** : Région du monde
 - **Pays** : Pays où la vente a eu lieu
