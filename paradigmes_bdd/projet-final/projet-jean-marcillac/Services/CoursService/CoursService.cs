@@ -7,28 +7,28 @@ namespace projet_jean_marcillac.Services.CoursService
 {
     public class CoursService : ICoursService
     {
-        private readonly RedisService _redisService;
+        private readonly RedisService redisService;
 
         public CoursService(RedisService redisService)
         {
-            _redisService = redisService;
+            this.redisService = redisService;
         }
 
         public async Task<Cours> AjouterCours(Cours cours)
         {
-            await _redisService.Database.HashSetAsync($"cours:{cours.Id}", cours.ToHashEntries());
+            await redisService.Database.HashSetAsync($"cours:{cours.Id}", cours.ToHashEntries());
             return cours;
         }
 
         public async Task<IEnumerable<Cours>> RecupererTousLesCours()
         {
-            var serveur = _redisService.Server;
+            var serveur = redisService.Server;
             var cours = new List<Cours>();
             var cles = serveur.Keys(pattern: "cours:*").ToList();
 
             foreach (var cle in cles)
             {
-                var hashEntries = await _redisService.Database.HashGetAllAsync(cle);
+                var hashEntries = await redisService.Database.HashGetAllAsync(cle);
                 cours.Add(new Cours(hashEntries));
             }
 
@@ -37,14 +37,14 @@ namespace projet_jean_marcillac.Services.CoursService
 
         public async Task<Cours> RecupererCours(int id)
         {
-            var hashEntries = await _redisService.Database.HashGetAllAsync($"cours:{id}");
+            var hashEntries = await redisService.Database.HashGetAllAsync($"cours:{id}");
             return new Cours(hashEntries);
 
         }
 
         public async Task<Cours> ModifierCours(int id, Cours updatedCours)
         {
-            await _redisService.Database.HashSetAsync($"cours:{id}", updatedCours.ToHashEntries());
+            await redisService.Database.HashSetAsync($"cours:{id}", updatedCours.ToHashEntries());
             return updatedCours;
 
         }
@@ -52,7 +52,7 @@ namespace projet_jean_marcillac.Services.CoursService
         public async Task<Cours?> SupprimerCours(int id)
         {
                 var cours = await RecupererCours(id);
-                await _redisService.Database.KeyDeleteAsync($"cours:{id}");
+                await redisService.Database.KeyDeleteAsync($"cours:{id}");
                 return cours;
         }
     }

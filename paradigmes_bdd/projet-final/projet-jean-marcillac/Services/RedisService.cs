@@ -9,12 +9,12 @@ public class RedisService : IDisposable
     public IServer Server { get; }
     public JsonCommands JsonCommands { get; }
 
-    public RedisService(string host, int port, string password)
+    public RedisService(string ip, int port, string mdp)
     {
         var options = new ConfigurationOptions
         {
-            EndPoints = { { host, port } },
-            Password = password
+            EndPoints = { { ip, port } },
+            Password = mdp
         };
 
         this._redis = ConnectionMultiplexer.Connect(options);
