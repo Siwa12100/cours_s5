@@ -41,7 +41,6 @@ namespace projet_jean_marcillac.Services.CoursService
         {
             var hashEntries = await redisService.Database.HashGetAllAsync($"cours:{id}");
             return new Cours(hashEntries);
-
         }
 
         public async Task<Cours> ModifierCours(int id, Cours updatedCours)

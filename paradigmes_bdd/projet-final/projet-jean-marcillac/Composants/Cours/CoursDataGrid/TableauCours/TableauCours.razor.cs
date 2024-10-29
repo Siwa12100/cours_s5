@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using projet_jean_marcillac.Services.CoursService;
 using CoursModele = projet_jean_marcillac.Modeles.Cours;
+using FenetreEdition = projet_jean_marcillac.Composants.Cours.CoursDataGrid.EditCoursDialog.EditCoursDialog;
 
 namespace projet_jean_marcillac.Composants.Cours.CoursDataGrid.TableauCours
 {
@@ -32,8 +33,7 @@ namespace projet_jean_marcillac.Composants.Cours.CoursDataGrid.TableauCours
             var parameters = new DialogParameters { { "Cours", cours } };
             var options = new DialogOptions { MaxWidth = MaxWidth.Medium, FullWidth = true, CloseButton = true };
 
-            var dialog = DialogService.Show<projet_jean_marcillac.Composants.Cours.
-                CoursDataGrid.EditCoursDialog.EditCoursDialog>("Modifier le Cours", parameters, options);
+            var dialog = DialogService.Show<FenetreEdition>("Modifier le Cours", parameters, options);
             var resultat = await dialog.Result;
 
             if (resultat == null) return;

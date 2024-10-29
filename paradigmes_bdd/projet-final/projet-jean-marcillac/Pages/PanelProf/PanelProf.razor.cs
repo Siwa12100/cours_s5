@@ -32,7 +32,6 @@ namespace projet_jean_marcillac.Pages.PanelProf
 
         protected async Task OnCoursModifieAsync()
         {
-            Console.WriteLine("Passage dans OnCoursModifieAsync");
             if (CoursService == null)
             {
                 throw new InvalidOperationException("CoursService est null");
