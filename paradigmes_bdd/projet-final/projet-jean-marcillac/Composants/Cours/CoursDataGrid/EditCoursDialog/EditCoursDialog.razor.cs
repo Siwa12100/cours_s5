@@ -18,17 +18,11 @@ namespace projet_jean_marcillac.Composants.Cours.CoursDataGrid.EditCoursDialog
 
         private void SaveChanges()
         {
-            if (MudDialog != null)
-            {
-                MudDialog.Close(DialogResult.Ok(Cours));
-            }
+            MudDialog?.Close(DialogResult.Ok(Cours));
         }
         private void Cancel()
         {
-            if (MudDialog != null)
-            {
-                MudDialog.Cancel();
-            }
+            MudDialog?.Cancel();
         }
     }
 }

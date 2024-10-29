@@ -29,6 +29,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9zYW50cy9Db3Vycy9Db3Vyc0RhdGFHcmlkL0VkaXRDb3Vyc0RpYWxvZy9FZGl0Q291cnNEaWFsb2cucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/Composants/Cours/CoursDataGrid/TableauCours/TableauCours.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9zYW50cy9Db3Vycy9Db3Vyc0RhdGFHcmlkL1RhYmxlYXVDb3Vycy9UYWJsZWF1Q291cnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = TWFpbkxheW91dC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
