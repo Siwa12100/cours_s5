@@ -27,3 +27,9 @@
 /home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/obj/Debug/net7.0/projet-jean-marcillac.pdb
 /home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/obj/Debug/net7.0/projet-jean-marcillac.genruntimeconfig.cache
 /home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/obj/Debug/net7.0/ref/projet-jean-marcillac.dll
+/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/bin/Debug/net7.0/NetTopologySuite.dll
+/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/bin/Debug/net7.0/NRedisStack.dll
+/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/bin/Debug/net7.0/Pipelines.Sockets.Unofficial.dll
+/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/bin/Debug/net7.0/StackExchange.Redis.dll
+/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/obj/Debug/net7.0/projet-jean-marcillac.csproj.AssemblyReference.cache
+/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/obj/Debug/net7.0/projet-j.AE8B981C.Up2Date

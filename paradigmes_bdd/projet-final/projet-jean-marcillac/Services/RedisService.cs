@@ -1,9 +1,13 @@
+using NRedisStack;
+using NRedisStack.RedisStackCommands;
 using StackExchange.Redis;
 
 public class RedisService : IDisposable
 {
     private readonly ConnectionMultiplexer _redis;
     public IDatabase Database { get; }
+    public IServer Server { get; }
+    public JsonCommands JsonCommands { get; }
 
     public RedisService(string host, int port, string password)
     {
@@ -13,8 +17,10 @@ public class RedisService : IDisposable
             Password = password
         };
 
-        _redis = ConnectionMultiplexer.Connect(options);
-        Database = _redis.GetDatabase();
+        this._redis = ConnectionMultiplexer.Connect(options);
+        this.Database = _redis.GetDatabase();
+        this.JsonCommands = Database.JSON();
+        this.Server = this._redis.GetServer(_redis.GetEndPoints()[0]);
     }
 
     public void Dispose()
