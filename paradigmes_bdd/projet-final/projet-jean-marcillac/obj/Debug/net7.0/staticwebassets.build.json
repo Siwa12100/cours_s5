@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "25MybmZyagvmD+k1acw70O7LC98P8WnoVXAFb9Vz5WA=",
+  "Hash": "7ykoanzfyjrjAVmcA5WLWSuB0hQnXBznRCk8S23SPDU=",
   "Source": "projet-jean-marcillac",
   "BasePath": "_content/projet-jean-marcillac",
   "Mode": "Default",
@@ -16,6 +16,44 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "/home/siwa/.nuget/packages/mudblazor/7.14.0/staticwebassets/MudBlazor.min.css",
+      "SourceId": "MudBlazor",
+      "SourceType": "Package",
+      "ContentRoot": "/home/siwa/.nuget/packages/mudblazor/7.14.0/staticwebassets/",
+      "BasePath": "_content/MudBlazor",
+      "RelativePath": "MudBlazor.min.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/home/siwa/.nuget/packages/mudblazor/7.14.0/staticwebassets/MudBlazor.min.css"
+    },
+    {
+      "Identity": "/home/siwa/.nuget/packages/mudblazor/7.14.0/staticwebassets/MudBlazor.min.js",
+      "SourceId": "MudBlazor",
+      "SourceType": "Package",
+      "ContentRoot": "/home/siwa/.nuget/packages/mudblazor/7.14.0/staticwebassets/",
+      "BasePath": "_content/MudBlazor",
+      "RelativePath": "MudBlazor.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/home/siwa/.nuget/packages/mudblazor/7.14.0/staticwebassets/MudBlazor.min.js"
+    },
     {
       "Identity": "/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/wwwroot/css/site.css",
       "SourceId": "projet-jean-marcillac",

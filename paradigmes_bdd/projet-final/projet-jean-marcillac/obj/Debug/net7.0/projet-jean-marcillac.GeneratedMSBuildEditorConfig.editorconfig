@@ -1,4 +1,7 @@
 is_global = true
+build_property.MudDebugAnalyzer = 
+build_property.MudAllowedAttributePattern = 
+build_property.MudIllegalParameters = 
 build_property.TargetFramework = net7.0
 build_property.TargetPlatformMinVersion = 
 build_property.UsingMicrosoftNETSdkWeb = true
@@ -22,12 +25,20 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/Composants/Cours/CoursDataGrid/EditCoursDialog/EditCoursDialog.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9zYW50cy9Db3Vycy9Db3Vyc0RhdGFHcmlkL0VkaXRDb3Vyc0RpYWxvZy9FZGl0Q291cnNEaWFsb2cucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = TWFpbkxheW91dC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/Pages/Index/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXgvSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/Pages/PanelProf/PanelProf.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUGFuZWxQcm9mL1BhbmVsUHJvZi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/_Imports.razor]

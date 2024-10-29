@@ -1,3 +1,5 @@
+using projet_jean_marcillac.Modeles;
+
 namespace projet_jean_marcillac.Services.CoursService
 {
     public interface ICoursService

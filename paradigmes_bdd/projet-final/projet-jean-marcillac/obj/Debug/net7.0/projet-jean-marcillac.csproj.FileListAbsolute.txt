@@ -33,3 +33,14 @@
 /home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/bin/Debug/net7.0/StackExchange.Redis.dll
 /home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/obj/Debug/net7.0/projet-jean-marcillac.csproj.AssemblyReference.cache
 /home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/obj/Debug/net7.0/projet-j.AE8B981C.Up2Date
+/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/bin/Debug/net7.0/Microsoft.AspNetCore.Authorization.dll
+/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/bin/Debug/net7.0/Microsoft.AspNetCore.Components.dll
+/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/bin/Debug/net7.0/Microsoft.AspNetCore.Components.Forms.dll
+/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/bin/Debug/net7.0/Microsoft.AspNetCore.Components.Web.dll
+/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/bin/Debug/net7.0/Microsoft.AspNetCore.Metadata.dll
+/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/bin/Debug/net7.0/Microsoft.Extensions.Localization.dll
+/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/bin/Debug/net7.0/Microsoft.Extensions.Localization.Abstractions.dll
+/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/bin/Debug/net7.0/Microsoft.Extensions.Logging.Abstractions.dll
+/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/bin/Debug/net7.0/Microsoft.Extensions.Options.dll
+/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/bin/Debug/net7.0/Microsoft.JSInterop.dll
+/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/bin/Debug/net7.0/MudBlazor.dll

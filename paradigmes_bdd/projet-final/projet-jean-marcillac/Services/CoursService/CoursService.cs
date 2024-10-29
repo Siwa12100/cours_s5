@@ -1,7 +1,9 @@
+using projet_jean_marcillac.Modeles;
 using StackExchange.Redis;
 using System.Collections.Generic;
 using System.Numerics;
 using System.Threading.Tasks;
+
 
 namespace projet_jean_marcillac.Services.CoursService
 {

@@ -1,6 +1,6 @@
 using StackExchange.Redis;
 
-namespace projet_jean_marcillac
+namespace projet_jean_marcillac.Modeles
 {
     public class Cours
     {
@@ -11,6 +11,8 @@ namespace projet_jean_marcillac
         public int NombreDePlacesDisponibles { get; set; }
         public List<int> IdsElevesInscrits { get; set; }
         public int IdProfesseur { get; set; }
+
+        public Cours() {}
 
 
         public Cours(int id, string titre, string resume, int nombreDePlacesDisponibles, string contenu, int idProfesseur = -2, List<int>? idsElevesInscrits = null)

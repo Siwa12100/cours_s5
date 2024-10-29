@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MudBlazor" Version="7.14.0" />
     <PackageReference Include="NRedisStack" Version="0.13.0" />
   </ItemGroup>
 
