@@ -7,7 +7,15 @@ namespace projet_jean_marcillac
         public async Task Lancement(RedisService redisService, ICoursService coursService)
         {
             Console.WriteLine("Debut de l'application console ! ");
+            // await tests1(redisService, coursService);
 
+
+            Console.WriteLine("Fin de l'application console ! ");
+
+        }
+
+        public async Task tests1(RedisService redisService, ICoursService coursService)
+        {
             redisService.Database.StringSet("cle1", "Test de stockage d'un string dans Redis");
             string? msg = redisService.Database.StringGet("cle1");
             Console.WriteLine(msg);
@@ -37,9 +45,6 @@ namespace projet_jean_marcillac
             {
                 await coursService.SupprimerCours(cours.Id);
             }
-
-            Console.WriteLine("Fin de l'application console ! ");
-
         }
     }
 }
