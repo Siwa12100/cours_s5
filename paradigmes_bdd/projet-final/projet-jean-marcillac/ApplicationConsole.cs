@@ -1,8 +1,10 @@
+using projet_jean_marcillac.Services.CoursService;
+
 namespace projet_jean_marcillac
 {
     public class ApplicationConsole
     {
-        public void Lancement(RedisService redisService)
+        public async Task Lancement(RedisService redisService, ICoursService coursService)
         {
             Console.WriteLine("Debut de l'application console ! ");
 
@@ -14,39 +16,29 @@ namespace projet_jean_marcillac
             var cours1 = new Cours(1, "Cours de Redis", "Cours sur Redis", 10, "Contenu du cours sur Redis");
             var cours2 = new Cours(2, "Cours de C#", "Cours sur C#", 10, "Contenu du cours sur C#");
 
-            db.HashSet("cours:1", cours1.ToHashEntries());
-            db.HashSet("cours:2", cours2.ToHashEntries());
+            await coursService.AjouterCours(cours1);
+            await coursService.AjouterCours(cours2);
 
             Console.WriteLine("Cours enregistrés ! ");
 
-            var resultat = db.HashGetAll("cours:*");
+            var resultat = await coursService.RecupererTousLesCours();
 
-            var res1 = db.HashGet("cours:1", "Titre");
-            var res2 = db.HashGetAll("cours:2");
+            resultat.ToList().ForEach(cours => Console.WriteLine(cours));
 
-            Console.WriteLine("Resultat 1 : " + res1.ToString());
+            await coursService.SupprimerCours(1);
 
-            var serveur = redisService.Server;
-            serveur.Keys(pattern: "cours:*").ToList().ForEach(key => Console.WriteLine(" - " + key.ToString()));
+            Console.WriteLine("Cours 1 supprimé ! ");
 
-            foreach (var hashEntry in res2)
+            resultat = await coursService.RecupererTousLesCours();
+
+            resultat.ToList().ForEach(cours => Console.WriteLine(cours));
+
+            foreach (var cours in resultat.ToList())
             {
-                Console.WriteLine($"{hashEntry.Name} : {hashEntry.Value}");
+                await coursService.SupprimerCours(cours.Id);
             }
 
-            // if (resultat != null)
-            // {
-            //     Console.WriteLine("Resultat non null");
-            //     int cpt = 1;
-            //     foreach (var hashEntry in resultat)
-            //     {
-            //         Console.WriteLine($"Cours {cpt}");
-            //         Console.WriteLine($"{hashEntry.Name} : {hashEntry.Value}");
-            //     }
-            // }
-            // else {
-            //     Console.WriteLine("Aucun cours trouvé dans Redis");
-            // }
+            Console.WriteLine("Fin de l'application console ! ");
 
         }
     }

@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using projet_jean_marcillac.Services.CoursService;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton(sp => new RedisService("149.7.5.30", 6379, "senhal"));
+builder.Services.AddSingleton<ICoursService, CoursService>();
 
 var app = builder.Build();
 

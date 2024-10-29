@@ -13,7 +13,7 @@ namespace projet_jean_marcillac
         public int IdProfesseur { get; set; }
 
 
-        public Cours(int id, string titre, string resume, int nombreDePlacesDisponibles, string contenu, int idProfesseur, List<int> idsElevesInscrits)
+        public Cours(int id, string titre, string resume, int nombreDePlacesDisponibles, string contenu, int idProfesseur = -2, List<int>? idsElevesInscrits = null)
         {
             Id = id;
             Titre = titre;
@@ -21,7 +21,7 @@ namespace projet_jean_marcillac
             NombreDePlacesDisponibles = nombreDePlacesDisponibles;
             Contenu = contenu;
             IdProfesseur = idProfesseur;
-            IdsElevesInscrits = idsElevesInscrits;
+            IdsElevesInscrits = idsElevesInscrits ?? new List<int>();
         }
 
         public Cours(HashEntry[] hashEntries)
@@ -47,8 +47,20 @@ namespace projet_jean_marcillac
                 {
                     idProfesseur = int.Parse(idProfesseur.ToString() ?? "-1");
                 }
-
-                var idsElevesInscrits = hashEntries.FirstOrDefault(x => x.Name == "IdsElevesInscrits").Value.ToString().Split(',').Select(int.Parse).ToList();
+                var idsElevesInscritsValue = hashEntries.FirstOrDefault(x => x.Name == "IdsElevesInscrits").Value;
+                List<int> idsElevesInscrits = new List<int>();
+                if (!idsElevesInscritsValue.IsNullOrEmpty)
+                {
+                    idsElevesInscrits = idsElevesInscritsValue.ToString()
+                        .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                        .Select(s => 
+                        {
+                            int.TryParse(s, out int id);
+                            return id;
+                        })
+                        .Where(id => id != 0)
+                        .ToList();
+                }
 
                 Id = (int)id;
                 Titre = titre.ToString();
@@ -73,6 +85,17 @@ namespace projet_jean_marcillac
             };
 
             return entries.ToArray();
+        }
+
+        public override string ToString()
+        {
+            return $"Cours: {Titre}\n" +
+               $"Id: {Id}\n" +
+               $"Résumé: {Resume}\n" +
+               $"Contenu: {Contenu}\n" +
+               $"Nombre de places disponibles: {NombreDePlacesDisponibles}\n" +
+               $"Id Professeur: {IdProfesseur}\n" +
+               $"Ids Élèves Inscrits: {string.Join(", ", IdsElevesInscrits)}";
         }
     }
 }

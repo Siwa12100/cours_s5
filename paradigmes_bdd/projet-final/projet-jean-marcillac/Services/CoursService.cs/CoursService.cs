@@ -14,7 +14,6 @@ namespace projet_jean_marcillac.Services.CoursService
             _redisService = redisService;
         }
 
-        // Ajouter un cours dans Redis
         public async Task<Cours> AjouterCours(Cours cours)
         {
             await _redisService.Database.HashSetAsync($"cours:{cours.Id}", cours.ToHashEntries());
@@ -36,7 +35,6 @@ namespace projet_jean_marcillac.Services.CoursService
             return cours;
         }
 
-        // Récupérer un cours par son ID
         public async Task<Cours> RecupererCours(int id)
         {
             var hashEntries = await _redisService.Database.HashGetAllAsync($"cours:{id}");

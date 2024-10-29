@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Components;
+using projet_jean_marcillac.Services.CoursService;
 
 namespace projet_jean_marcillac.Pages.Index
 {
@@ -6,6 +7,9 @@ namespace projet_jean_marcillac.Pages.Index
     {
         [Inject]
         protected RedisService? RedisService { get; set; }
+
+        [Inject]
+        protected ICoursService? CoursService { get; set; }
         protected ApplicationConsole? applicationConsole;
         protected static bool appConsoleLancee = false;
         protected string message = "Hello, World!";
@@ -13,11 +17,11 @@ namespace projet_jean_marcillac.Pages.Index
         protected override async Task OnInitializedAsync()
         {
             applicationConsole = new ApplicationConsole();
-            if (RedisService != null)
+            if (RedisService != null && CoursService != null)
             {
                 if (!appConsoleLancee)
                 {
-                    applicationConsole.Lancement(RedisService);
+                    await applicationConsole.Lancement(RedisService, CoursService);
                     appConsoleLancee = true;
                 }
             }
