@@ -1,20 +1,37 @@
-using System;
+using StackExchange.Redis;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace projet_jean_marcillac.Modeles
 {
     public class Eleve : Membre
     {
-        List<int> IdsCoursSuivis {get; set;}
+        public List<int> IdsCoursInscrits { get; set; }
 
-        public Eleve(int id, string nom, string prenom, List<int>? idsCoursSuivis = null)
+        public Eleve(int id, string nom, string prenom, List<int>? idsCoursInscrits = null)
         {
             Id = id;
             Nom = nom;
             Prenom = prenom;
-            IdsCoursSuivis = idsCoursSuivis ?? new List<int>();
+            IdsCoursInscrits = idsCoursInscrits ?? new List<int>();
+        }
+
+        public Eleve(HashEntry[] hashEntries)
+        {
+            Id = (int)hashEntries.FirstOrDefault(e => e.Name == "Id").Value;
+            Nom = hashEntries.FirstOrDefault(e => e.Name == "Nom").Value;
+            Prenom = hashEntries.FirstOrDefault(e => e.Name == "Prenom").Value;
+            IdsCoursInscrits = hashEntries.FirstOrDefault(e => e.Name == "IdsCoursInscrits").Value.ToString().Split(',').Select(int.Parse).ToList();
+        }
+
+        public HashEntry[] ToHashEntries()
+        {
+            return new[]
+            {
+                new HashEntry("Id", Id),
+                new HashEntry("Nom", Nom),
+                new HashEntry("Prenom", Prenom),
+                new HashEntry("IdsCoursInscrits", string.Join(",", IdsCoursInscrits))
+            };
         }
     }
 }
