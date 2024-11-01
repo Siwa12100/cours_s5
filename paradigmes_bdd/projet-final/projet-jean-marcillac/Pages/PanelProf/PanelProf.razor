@@ -2,7 +2,13 @@
 @using MudBlazor
 @using projet_jean_marcillac.Modeles
 @using projet_jean_marcillac.Composants.Cours.CoursDataGrid.TableauCours
+@using projet_jean_marcillac.Composants.NavBar
+@using projet_jean_marcillac.Composants.Footer
+
+<NavBar/>
 
 <h1>Panel Prof</h1>
 
 <TableauCours Cours="@Cours" OnCoursModifie="() => OnCoursModifieAsync()"/>
+
+<Footer/>

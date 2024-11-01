@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/obj/Debug/net7.0/scopedcss/projectbundle/projet-jean-marcillac.bundle.scp.css",
+      "PackagePath": "staticwebassets/projet-jean-marcillac.bundle.scp.css"
+    },
+    {
       "Id": "/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/wwwroot/css/site.css",
       "PackagePath": "staticwebassets/css/site.css"
     },

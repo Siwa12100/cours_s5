@@ -44,3 +44,6 @@
 /home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/bin/Debug/net7.0/Microsoft.Extensions.Options.dll
 /home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/bin/Debug/net7.0/Microsoft.JSInterop.dll
 /home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/bin/Debug/net7.0/MudBlazor.dll
+/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/obj/Debug/net7.0/scopedcss/Composants/NavBar/NavBar.razor.rz.scp.css
+/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/obj/Debug/net7.0/scopedcss/projectbundle/projet-jean-marcillac.bundle.scp.css
+/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/obj/Debug/net7.0/scopedcss/Composants/Footer/Footer.razor.rz.scp.css
