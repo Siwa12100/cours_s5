@@ -1,14 +1,25 @@
 @page "/"
 @using projet_jean_marcillac.Composants.NavBar
 @using projet_jean_marcillac.Composants.Footer
+@using projet_jean_marcillac.Composants.Professeurs.ProfesseursDataGrid
 
 <NavBar/>
 
-<h1>Panel Administration de la plateforme de cours</h1>
-<br>
-<br>
+<div class="contenu">
 
-<projet_jean_marcillac.Composants.Professeurs.ProfesseursDataGrid.ProfesseursDataGrid Professeurs="@Professeurs" 
-    OnProfesseurModifie="() => ProfesseurSelectionChanged()" />
+    <h1>Panel d'administration de la plateforme de cours</h1>
+
+    <div class="tableaux">
+        <div class="tableauProfs">
+            <h2>Professeurs</h2>
+            <ProfesseursDataGrid Professeurs="@Professeurs" 
+                                OnProfesseurModifie="() => ProfesseurSelectionChanged()"/>
+        </div>
+
+        <div class="tableauEleves">
+            <h2>Etudiants</h2>
+        </div>
+    </div>
+</div>
 
 <Footer/>

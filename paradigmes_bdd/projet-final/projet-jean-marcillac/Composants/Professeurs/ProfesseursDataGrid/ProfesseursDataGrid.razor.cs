@@ -18,9 +18,6 @@ namespace projet_jean_marcillac.Composants.Professeurs.ProfesseursDataGrid
         [Parameter]
         public List<Professeur>? Professeurs { get; set; }
 
-        [Parameter]
-        public EventCallback OnProfesseurModifie { get; set; }
-
         [Inject]
         protected IMembreService? MembreService { get; set; }
 
@@ -28,7 +25,6 @@ namespace projet_jean_marcillac.Composants.Professeurs.ProfesseursDataGrid
 
         protected override async Task OnInitializedAsync()
         {
-  
             await base.OnInitializedAsync();
         }
 
@@ -70,5 +66,8 @@ namespace projet_jean_marcillac.Composants.Professeurs.ProfesseursDataGrid
             await MembreService.SupprimerProfesseur(professeur.Id);
             await OnProfesseurModifie.InvokeAsync();
         }
+
+        [Parameter]
+        public EventCallback OnProfesseurModifie { get; set; }
     }
 }

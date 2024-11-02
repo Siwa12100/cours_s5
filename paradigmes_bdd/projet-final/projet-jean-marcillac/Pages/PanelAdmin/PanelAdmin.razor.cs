@@ -28,8 +28,9 @@ namespace projet_jean_marcillac.Pages.PanelAdmin
             }
 
             this.stubData = new StubData(new Services.DataService(this.RedisService));
-            await this.stubData.SupprimerToutesLesDonnees();
-            await this.stubData.ChargerStubProjet();
+
+            // await this.stubData.SupprimerToutesLesDonnees();
+            // await this.stubData.ChargerStubProjet();
 
             if (this.MembreService == null)
             {
@@ -46,7 +47,20 @@ namespace projet_jean_marcillac.Pages.PanelAdmin
 
         protected async Task ProfesseurSelectionChanged()
         {
+            Console.WriteLine("Event changement prof levé ! ");
 
+            if (this.MembreService == null)
+            {
+                throw new ArgumentNullException(nameof(MembreService));
+            }
+
+            var profsResultat = await MembreService.RecupererTousLesProfesseurs();
+            if (profsResultat == null)
+            {
+                throw new ArgumentNullException(nameof(profsResultat));
+            }
+            this.Professeurs = profsResultat.ToList();
+            StateHasChanged();
         }
     }
 }
