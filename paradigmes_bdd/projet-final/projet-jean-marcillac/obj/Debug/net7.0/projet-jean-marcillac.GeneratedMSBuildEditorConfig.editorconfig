@@ -33,6 +33,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9zYW50cy9Db3Vycy9Db3Vyc0RhdGFHcmlkL1RhYmxlYXVDb3Vycy9UYWJsZWF1Q291cnMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/Composants/Professeurs/FenetreEditionProfesseur/FenetreEditionProfesseur.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9zYW50cy9Qcm9mZXNzZXVycy9GZW5ldHJlRWRpdGlvblByb2Zlc3NldXIvRmVuZXRyZUVkaXRpb25Qcm9mZXNzZXVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = TWFpbkxheW91dC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -56,6 +60,10 @@ build_metadata.AdditionalFiles.CssScope = b-t47pkccyiw
 [/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/Composants/NavBar/NavBar.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9zYW50cy9OYXZCYXIvTmF2QmFyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-bm6uieix6k
+
+[/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/Composants/Professeurs/ProfesseursDataGrid/ProfesseursDataGrid.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9zYW50cy9Qcm9mZXNzZXVycy9Qcm9mZXNzZXVyc0RhdGFHcmlkL1Byb2Zlc3NldXJzRGF0YUdyaWQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-2w3l73kyjj
 
 [/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/Pages/PanelAdmin/PanelAdmin.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUGFuZWxBZG1pbi9QYW5lbEFkbWluLnJhem9y

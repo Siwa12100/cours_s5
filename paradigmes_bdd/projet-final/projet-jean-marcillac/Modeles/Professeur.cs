@@ -8,6 +8,11 @@ namespace projet_jean_marcillac.Modeles
     {
         public List<int> IdsCoursDonnes { get; set; }
 
+        public Professeur()
+        {
+            IdsCoursDonnes = new List<int>();
+        }
+
         public Professeur(int id, string nom, string prenom, List<int>? idsCoursDonnes = null)
         {
             Id = id;

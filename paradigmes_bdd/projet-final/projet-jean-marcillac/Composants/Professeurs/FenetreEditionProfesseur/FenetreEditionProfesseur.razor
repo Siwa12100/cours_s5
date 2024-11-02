@@ -1,0 +1,14 @@
+@using MudBlazor
+@using projet_jean_marcillac.Modeles
+
+<MudDialog>
+    <DialogContent>
+        <MudText Typo="Typo.h6">Modifier le Professeur</MudText>
+        <MudTextField @bind-Value="Professeur.Nom" Label="Nom" Required="true" />
+        <MudTextField @bind-Value="Professeur.Prenom" Label="Prénom" Required="true" />
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Annuler" Color="Color.Secondary">Annuler</MudButton>
+        <MudButton OnClick="Sauvegarder" Color="Color.Primary">Sauvegarder</MudButton>
+    </DialogActions>
+</MudDialog>
