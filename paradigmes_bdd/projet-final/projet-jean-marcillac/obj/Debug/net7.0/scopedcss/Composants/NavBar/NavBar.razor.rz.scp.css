@@ -13,7 +13,28 @@ nav[b-bm6uieix6k] {
 
 .contenu[b-bm6uieix6k] {
 
-    border : 1px solid red;
     height: 90%;
     width: 90%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.boutons[b-bm6uieix6k] {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: space-around;
+
+    width: 60%;
+}
+
+.boutons button[b-bm6uieix6k] {
+
+    
+    color : white;
+    margin: 3.5vw;
 }
