@@ -2,6 +2,7 @@
 @using projet_jean_marcillac.Composants.NavBar
 @using projet_jean_marcillac.Composants.Footer
 @using projet_jean_marcillac.Composants.Professeurs.ProfesseursDataGrid
+@using projet_jean_marcillac.Composants.Etudiants.EtudiantsDataGrid
 @using MudBlazor
 
 <NavBar/>
@@ -19,6 +20,8 @@
 
         <div class="tableauEleves">
             <h2>Etudiants</h2>
+            <EtudiantsDataGrid Etudiants="@Eleves" 
+                                OnEtudiantModifie="() => EleveSelectionChanged()"/>
         </div>
     </div>
 

@@ -21,6 +21,7 @@ namespace projet_jean_marcillac.Pages.PanelAdmin
         protected IMembreService? MembreService { get; set; }
 
         protected List<Professeur>? Professeurs { get; set; }
+        protected List<Eleve>? Eleves { get; set; }
 
         protected StubData? stubData;
 
@@ -43,7 +44,15 @@ namespace projet_jean_marcillac.Pages.PanelAdmin
             {
                 throw new ArgumentNullException(nameof(profsResultat));
             }
+
+            var elevesResultat = await MembreService.RecupererTousLesEleves();
+            if (elevesResultat == null)
+            {
+                throw new ArgumentNullException(nameof(elevesResultat));
+            }
+            
             this.Professeurs = profsResultat.ToList();
+            this.Eleves = elevesResultat.ToList();
         }
 
         protected async Task ProfesseurSelectionChanged()
@@ -64,6 +73,24 @@ namespace projet_jean_marcillac.Pages.PanelAdmin
             StateHasChanged();
         }
 
+        protected async Task EleveSelectionChanged()
+        {
+            Console.WriteLine("Event changement eleve levé ! ");
+
+            if (this.MembreService == null)
+            {
+                throw new ArgumentNullException(nameof(MembreService));
+            }
+
+            var elevesResultat = await MembreService.RecupererTousLesEleves();
+            if (elevesResultat == null)
+            {
+                throw new ArgumentNullException(nameof(elevesResultat));
+            }
+            this.Eleves = elevesResultat.ToList();
+            StateHasChanged();
+        }
+
         private async Task ChargerStub()
         {
             if (this.stubData == null)
@@ -74,6 +101,7 @@ namespace projet_jean_marcillac.Pages.PanelAdmin
             await this.stubData.SupprimerToutesLesDonnees();
             await this.stubData.ChargerStubProjet();
             await ProfesseurSelectionChanged();
+            await EleveSelectionChanged();
         }
 
         private async Task SupprimerToutesLesDonnees()

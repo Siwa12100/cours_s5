@@ -20,6 +20,7 @@ namespace projet_jean_marcillac.Composants.Cours.CoursDataGrid.EditCoursDialog
         {
             MudDialog?.Close(DialogResult.Ok(Cours));
         }
+
         private void Cancel()
         {
             MudDialog?.Cancel();

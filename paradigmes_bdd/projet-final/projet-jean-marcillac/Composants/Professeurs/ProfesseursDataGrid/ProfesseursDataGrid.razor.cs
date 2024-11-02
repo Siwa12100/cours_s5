@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using projet_jean_marcillac.Modeles;
 using projet_jean_marcillac.Services.MembreService;
-using projet_jean_marcillac.Composants.Professeurs.FenetreEditionProfesseur;
+using projet_jean_marcillac.Composants.FenetreEditionMembre;
 
 namespace projet_jean_marcillac.Composants.Professeurs.ProfesseursDataGrid
 {
@@ -26,7 +26,6 @@ namespace projet_jean_marcillac.Composants.Professeurs.ProfesseursDataGrid
 
         private string searchString = "";
 
-
         private bool QuickFilter(Professeur professeur)
         {
             if (string.IsNullOrWhiteSpace(searchString))
@@ -44,10 +43,10 @@ namespace projet_jean_marcillac.Composants.Professeurs.ProfesseursDataGrid
             if (MembreService == null) return;
             this.Professeurs ??= new List<Professeur>();
 
-            var parameters = new DialogParameters { { "Professeur", professeur } };
+            var parameters = new DialogParameters { { "Membre", professeur } };
             var options = new DialogOptions { MaxWidth = MaxWidth.Medium, FullWidth = true, CloseButton = true };
 
-            var dialog = DialogService.Show<FenetreEditionProfesseur.FenetreEditionProfesseur>("Modifier le Professeur", parameters, options);
+            var dialog = DialogService.Show<FenetreEditionMembre.FenetreEditionMembre>("Modifier le Professeur", parameters, options);
             var resultat = await dialog.Result;
 
             if (resultat == null) return;
@@ -73,10 +72,10 @@ namespace projet_jean_marcillac.Composants.Professeurs.ProfesseursDataGrid
             this.Professeurs ??= new List<Professeur>();
 
             var nouveauProfesseur = new Professeur();
-            var parameters = new DialogParameters { { "Professeur", nouveauProfesseur } };
+            var parameters = new DialogParameters { { "Membre", nouveauProfesseur } };
             var options = new DialogOptions { MaxWidth = MaxWidth.Medium, FullWidth = true, CloseButton = true };
 
-            var dialog = DialogService.Show<FenetreEditionProfesseur.FenetreEditionProfesseur>("Ajouter un Professeur", parameters, options);
+            var dialog = DialogService.Show<FenetreEditionMembre.FenetreEditionMembre>("Ajouter un Professeur", parameters, options);
             var resultat = await dialog.Result;
 
             if (resultat == null) return;
