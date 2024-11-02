@@ -50,3 +50,6 @@
 /home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/obj/Debug/net7.0/scopedcss/Pages/PanelAdmin/PanelAdmin.razor.rz.scp.css
 /home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/obj/Debug/net7.0/scopedcss/Composants/Professeurs/ProfesseursDataGrid/ProfesseursDataGrid.razor.rz.scp.css
 /home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/obj/Debug/net7.0/scopedcss/Composants/Etudiants/EtudiantsDataGrid/EtudiantsDataGrid.razor.rz.scp.css
+/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/obj/Debug/net7.0/scopedcss/Composants/FormulaireConnexion/FormulaireConnexion.razor.rz.scp.css
+/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/obj/Debug/net7.0/scopedcss/Pages/PanelProf/PanelProf.razor.rz.scp.css
+/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/obj/Debug/net7.0/scopedcss/Composants/Cours/CoursDataGrid/TableauCours/TableauCours.razor.rz.scp.css

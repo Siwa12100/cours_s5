@@ -12,7 +12,7 @@ namespace projet_jean_marcillac.Composants.NavBar
             string uri = "";
             switch(choix)
             {
-                case 1 : uri = "/paneladmin"; break;
+                case 1 : uri = "/"; break;
                 case 2 : uri = "/panelprof"; break;
                 case 3 : uri = "/paneletudiant"; break;
             }

@@ -75,18 +75,29 @@ namespace projet_jean_marcillac.Modeles
 
         public HashEntry[] ToHashEntries()
         {
-            var entries = new List<HashEntry>
+            // var entries = new List<HashEntry>
+            // {
+            //     new HashEntry("Id", Id),
+            //     new HashEntry("Titre", Titre),
+            //     new HashEntry("Resume", Resume),
+            //     new HashEntry("Contenu", Contenu),
+            //     new HashEntry("NombreDePlacesDisponibles", NombreDePlacesDisponibles),
+            //     new HashEntry("IdProfesseur", IdProfesseur),
+            //     new HashEntry("IdsElevesInscrits", string.Join(',', IdsElevesInscrits))
+            // };
+
+            // return entries.ToArray();
+
+            return new[]
             {
                 new HashEntry("Id", Id),
-                new HashEntry("Titre", Titre),
-                new HashEntry("Resume", Resume),
-                new HashEntry("Contenu", Contenu),
+                new HashEntry("Titre", Titre ?? string.Empty),
+                new HashEntry("Resume", Resume ?? string.Empty),
                 new HashEntry("NombreDePlacesDisponibles", NombreDePlacesDisponibles),
+                new HashEntry("Contenu", Contenu ?? string.Empty),
                 new HashEntry("IdProfesseur", IdProfesseur),
-                new HashEntry("IdsElevesInscrits", string.Join(',', IdsElevesInscrits))
+                new HashEntry("IdsElevesInscrits", string.Join(",", IdsElevesInscrits ?? new List<int>()))
             };
-
-            return entries.ToArray();
         }
 
         public override string ToString()

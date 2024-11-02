@@ -4,11 +4,29 @@
 @using projet_jean_marcillac.Composants.Cours.CoursDataGrid.TableauCours
 @using projet_jean_marcillac.Composants.NavBar
 @using projet_jean_marcillac.Composants.Footer
+@using projet_jean_marcillac.Composants.FormulaireConnexion
 
 <NavBar/>
 
-<h1>Panel Prof</h1>
+@if (this.MembreConnecte == null)
+{
+    <h1>Panel Professeur</h1>
 
-<TableauCours Cours="@Cours" OnCoursModifie="() => OnCoursModifieAsync()"/>
+    <FormulaireConnexion OnConnexion="OnConnexion"
+                         Membres="@TousLesProfesseurs"
+                         Titre="Connexion - Professeur"/>
+}
+else
+{
+    <h1>Panel Professeur : @this.MembreConnecte.Nom @this.MembreConnecte.Prenom</h1>
+
+    <div class="contenu">
+        <div class="tableau">
+            <TableauCours Cours="@Cours"
+                          OnCoursModifie="() => OnCoursModifieAsync()"
+                          IdProfesseur="@this.MembreConnecte.Id"/>
+        </div>
+    </div>
+}
 
 <Footer/>

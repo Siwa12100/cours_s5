@@ -1,3 +1,17 @@
+/* _content/projet-jean-marcillac/Composants/Cours/CoursDataGrid/TableauCours/TableauCours.razor.rz.scp.css */
+.tableau[b-0dlgxtbfem] {
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contenu[b-0dlgxtbfem] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}
 /* _content/projet-jean-marcillac/Composants/Etudiants/EtudiantsDataGrid/EtudiantsDataGrid.razor.rz.scp.css */
 .contenu[b-ohg7g2tbkx] {
     display: flex;
@@ -35,6 +49,10 @@
     border : 1px solid red;
     height: 90%;
     width: 90%;
+}
+/* _content/projet-jean-marcillac/Composants/FormulaireConnexion/FormulaireConnexion.razor.rz.scp.css */
+.contenu[b-tpellg0dh3] {
+    margin-bottom: 18vw;
 }
 /* _content/projet-jean-marcillac/Composants/NavBar/NavBar.razor.rz.scp.css */
 nav[b-bm6uieix6k] {
@@ -137,4 +155,29 @@ h1[b-1hjklefgfg] {
     /* border : 3px solid red; */
 
     width: 45%;
+}
+/* _content/projet-jean-marcillac/Pages/PanelProf/PanelProf.razor.rz.scp.css */
+h1[b-4ezb0572rm] {
+
+    margin-bottom: 3vw;
+    font-size: 3vw;
+    width: 100%;
+    text-align: center;
+}
+
+.contenu[b-4ezb0572rm] {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    margin-bottom: 20vw;
+}
+
+.tableau[b-4ezb0572rm] {
+
+    
+
+    width: 90%;
+
 }
