@@ -57,6 +57,10 @@ build_metadata.AdditionalFiles.CssScope = b-t47pkccyiw
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9zYW50cy9OYXZCYXIvTmF2QmFyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-bm6uieix6k
 
+[/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/Pages/PanelAdmin/PanelAdmin.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUGFuZWxBZG1pbi9QYW5lbEFkbWluLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-1hjklefgfg
+
 [/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/Pages/_Host.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX0hvc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

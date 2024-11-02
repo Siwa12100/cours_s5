@@ -26,7 +26,7 @@ namespace projet_jean_marcillac.Pages.Index
             {
                 if (!appConsoleLancee)
                 {
-                    await applicationConsole.Lancement(RedisService, CoursService, new Services.DataService(MembreService, CoursService));
+                    await applicationConsole.Lancement(RedisService, CoursService, new Services.DataService(RedisService));
                     appConsoleLancee = true;
                 }
             }
