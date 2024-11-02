@@ -1,5 +1,6 @@
 using StackExchange.Redis;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace projet_jean_marcillac.Modeles
 {
@@ -20,7 +21,10 @@ namespace projet_jean_marcillac.Modeles
             Id = (int)hashEntries.FirstOrDefault(e => e.Name == "Id").Value;
             Nom = hashEntries.FirstOrDefault(e => e.Name == "Nom").Value;
             Prenom = hashEntries.FirstOrDefault(e => e.Name == "Prenom").Value;
-            IdsCoursDonnes = hashEntries.FirstOrDefault(e => e.Name == "IdsCoursDonnes").Value.ToString().Split(',').Select(int.Parse).ToList();
+            var idsCoursDonnesValue = hashEntries.FirstOrDefault(e => e.Name == "IdsCoursDonnes").Value.ToString();
+            IdsCoursDonnes = string.IsNullOrEmpty(idsCoursDonnesValue)
+                ? new List<int>()
+                : idsCoursDonnesValue.Split(',').Select(int.Parse).ToList();
         }
 
         public HashEntry[] ToHashEntries()
@@ -28,8 +32,8 @@ namespace projet_jean_marcillac.Modeles
             return new[]
             {
                 new HashEntry("Id", Id),
-                new HashEntry("Nom", Nom),
-                new HashEntry("Prenom", Prenom),
+                new HashEntry("Nom", Nom ?? string.Empty),
+                new HashEntry("Prenom", Prenom ?? string.Empty),
                 new HashEntry("IdsCoursDonnes", string.Join(",", IdsCoursDonnes))
             };
         }
