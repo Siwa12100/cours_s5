@@ -18,15 +18,14 @@ namespace projet_jean_marcillac.Composants.Professeurs.ProfesseursDataGrid
         [Parameter]
         public List<Professeur>? Professeurs { get; set; }
 
+        [Parameter]
+        public EventCallback OnProfesseurModifie { get; set; }
+
         [Inject]
         protected IMembreService? MembreService { get; set; }
 
         private string searchString = "";
 
-        protected override async Task OnInitializedAsync()
-        {
-            await base.OnInitializedAsync();
-        }
 
         private bool QuickFilter(Professeur professeur)
         {
@@ -67,7 +66,26 @@ namespace projet_jean_marcillac.Composants.Professeurs.ProfesseursDataGrid
             await OnProfesseurModifie.InvokeAsync();
         }
 
-        [Parameter]
-        public EventCallback OnProfesseurModifie { get; set; }
+        private async Task AjouterProfesseur()
+        {
+            if (DialogService == null) return;
+            if (MembreService == null) return;
+            this.Professeurs ??= new List<Professeur>();
+
+            var nouveauProfesseur = new Professeur();
+            var parameters = new DialogParameters { { "Professeur", nouveauProfesseur } };
+            var options = new DialogOptions { MaxWidth = MaxWidth.Medium, FullWidth = true, CloseButton = true };
+
+            var dialog = DialogService.Show<FenetreEditionProfesseur.FenetreEditionProfesseur>("Ajouter un Professeur", parameters, options);
+            var resultat = await dialog.Result;
+
+            if (resultat == null) return;
+
+            if (!resultat.Canceled && resultat.Data is Professeur professeurAjoute)
+            {
+                await MembreService.AjouterProfesseur(professeurAjoute);
+                await OnProfesseurModifie.InvokeAsync();
+            }
+        }
     }
 }

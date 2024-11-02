@@ -2,6 +2,10 @@ using Microsoft.AspNetCore.Components;
 using projet_jean_marcillac.Modeles;
 using projet_jean_marcillac.Services.CoursService;
 using projet_jean_marcillac.Services.MembreService;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace projet_jean_marcillac.Pages.PanelAdmin
 {
@@ -28,9 +32,6 @@ namespace projet_jean_marcillac.Pages.PanelAdmin
             }
 
             this.stubData = new StubData(new Services.DataService(this.RedisService));
-
-            // await this.stubData.SupprimerToutesLesDonnees();
-            // await this.stubData.ChargerStubProjet();
 
             if (this.MembreService == null)
             {
@@ -61,6 +62,29 @@ namespace projet_jean_marcillac.Pages.PanelAdmin
             }
             this.Professeurs = profsResultat.ToList();
             StateHasChanged();
+        }
+
+        private async Task ChargerStub()
+        {
+            if (this.stubData == null)
+            {
+                throw new InvalidOperationException("Le StubData n'est pas initialisé.");
+            }
+
+            await this.stubData.SupprimerToutesLesDonnees();
+            await this.stubData.ChargerStubProjet();
+            await ProfesseurSelectionChanged();
+        }
+
+        private async Task SupprimerToutesLesDonnees()
+        {
+            if (this.stubData == null)
+            {
+                throw new InvalidOperationException("Le StubData n'est pas initialisé.");
+            }
+
+            await this.stubData.SupprimerToutesLesDonnees();
+            await ProfesseurSelectionChanged();
         }
     }
 }

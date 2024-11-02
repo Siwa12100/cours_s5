@@ -40,6 +40,28 @@ nav[b-bm6uieix6k] {
     width: 90%;
 }
 /* _content/projet-jean-marcillac/Composants/Professeurs/ProfesseursDataGrid/ProfesseursDataGrid.razor.rz.scp.css */
+.contenu[b-2w3l73kyjj] {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+
+    width: 100%;
+}
+
+.tableau[b-2w3l73kyjj], .barre-recherche[b-2w3l73kyjj] {
+
+    width: 100%;
+    margin-bottom: 2vw;
+}
+
+.tableau[b-2w3l73kyjj] {
+
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 /* _content/projet-jean-marcillac/Pages/PanelAdmin/PanelAdmin.razor.rz.scp.css */
 .contenu[b-1hjklefgfg] {
 
