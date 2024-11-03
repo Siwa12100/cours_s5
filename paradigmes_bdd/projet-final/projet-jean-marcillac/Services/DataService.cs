@@ -60,54 +60,53 @@ namespace projet_jean_marcillac.Services
             return await CoursService.RecupererCours(id);
         }
 
-        public async Task<Cours> ModifierCours(int id, Cours updatedCours)
+        public async Task<Cours> ModifierCours(int id, Cours nouvelleVersionDuCours)
         {
-            Console.WriteLine("Debut modification cours dans DataService");
-            Console.WriteLine(updatedCours);
-            
-            var existingCours = await CoursService.RecupererCours(id);
-            var modifiedCours = await CoursService.ModifierCours(id, updatedCours);
+          
+            var coursExistant = await CoursService.RecupererCours(id);
+            var elevesExistants = coursExistant.IdsElevesInscrits;
+            var elevesModifies = nouvelleVersionDuCours.IdsElevesInscrits;
 
-            // Mise à jour des élèves inscrits à ce cours
-            var existingEleves = existingCours.IdsElevesInscrits;
-            var updatedEleves = updatedCours.IdsElevesInscrits;
+            var elevesAAjouter = elevesModifies.Except(elevesExistants).ToList();
+            var elevesASupprimer = elevesExistants.Except(elevesModifies).ToList();
 
-            var elevesToAdd = updatedEleves.Except(existingEleves).ToList();
-            var elevesToRemove = existingEleves.Except(updatedEleves).ToList();
-
-            foreach (var eleveId in elevesToAdd)
+            foreach (var eleveId in elevesAAjouter)
             {
                 var eleve = await MembreService.RecupererEleve(eleveId);
-                eleve.IdsCoursInscrits.Add(updatedCours.Id);
+                eleve.IdsCoursInscrits.Add(nouvelleVersionDuCours.Id);
                 await MembreService.ModifierEleve(eleve.Id, eleve);
             }
 
-            foreach (var eleveId in elevesToRemove)
+            foreach (var eleveId in elevesASupprimer)
             {
                 var eleve = await MembreService.RecupererEleve(eleveId);
                 eleve.IdsCoursInscrits.Remove(id);
                 await MembreService.ModifierEleve(eleve.Id, eleve);
             }
 
-            // Mise à jour du professeur donnant ce cours
-            if (existingCours.IdProfesseur != updatedCours.IdProfesseur)
+            if (coursExistant.IdProfesseur != nouvelleVersionDuCours.IdProfesseur)
             {
-                if (existingCours.IdProfesseur != -2)
+                if (coursExistant.IdProfesseur != -2)
                 {
-                    var oldProfesseur = await MembreService.RecupererProfesseur(existingCours.IdProfesseur);
+                    var oldProfesseur = await MembreService.RecupererProfesseur(coursExistant.IdProfesseur);
                     oldProfesseur.IdsCoursDonnes.Remove(id);
                     await MembreService.ModifierProfesseur(oldProfesseur.Id, oldProfesseur);
                 }
 
-                if (updatedCours.IdProfesseur != -2)
+                if (nouvelleVersionDuCours.IdProfesseur != -2)
                 {
-                    var newProfesseur = await MembreService.RecupererProfesseur(updatedCours.IdProfesseur);
-                    newProfesseur.IdsCoursDonnes.Add(updatedCours.Id);
+                    var newProfesseur = await MembreService.RecupererProfesseur(nouvelleVersionDuCours.IdProfesseur);
+                    newProfesseur.IdsCoursDonnes.Add(nouvelleVersionDuCours.Id);
                     await MembreService.ModifierProfesseur(newProfesseur.Id, newProfesseur);
                 }
             }
 
-            return modifiedCours;
+            var nouveauNbPlacesDispos = nouvelleVersionDuCours.NombreDePlacesDisponibles;
+            nouveauNbPlacesDispos = nouveauNbPlacesDispos - nouvelleVersionDuCours.IdsElevesInscrits.Count;
+            nouvelleVersionDuCours.NombreDePlacesDisponibles = nouveauNbPlacesDispos;
+
+            await this.CoursService.ModifierCours(id, nouvelleVersionDuCours);
+            return nouvelleVersionDuCours;
         }
 
         public async Task<Cours?> SupprimerCours(int id)
@@ -154,6 +153,38 @@ namespace projet_jean_marcillac.Services
 
         public async Task<Eleve> ModifierEleve(int id, Eleve updatedEleve)
         {
+            var eleveActuel = await MembreService.RecupererEleve(id);
+            var coursADesinscrireEleve = new List<int>();
+            var coursAInscrireEleve = new List<int>();
+
+            eleveActuel.IdsCoursInscrits.ForEach(idCours => {
+                if (!updatedEleve.IdsCoursInscrits.Contains(idCours))
+                {
+                    coursADesinscrireEleve.Add(idCours);
+                }
+            });
+
+            updatedEleve.IdsCoursInscrits.ForEach(idCours => {
+                if (!eleveActuel.IdsCoursInscrits.Contains(idCours))
+                {
+                    coursAInscrireEleve.Add(idCours);
+                }
+            });
+
+            foreach (var idCours in coursADesinscrireEleve)
+            {
+                var cours = await CoursService.RecupererCours(idCours);
+                cours.IdsElevesInscrits.Remove(id);
+                await CoursService.ModifierCours(idCours, cours);
+            }
+
+            foreach (var idCours in coursAInscrireEleve)
+            {
+                var cours = await CoursService.RecupererCours(idCours);
+                cours.IdsElevesInscrits.Add(id);
+                await CoursService.ModifierCours(idCours, cours);
+            }
+
             return await MembreService.ModifierEleve(id, updatedEleve);
         }
 
