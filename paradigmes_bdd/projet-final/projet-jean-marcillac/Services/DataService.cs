@@ -62,6 +62,9 @@ namespace projet_jean_marcillac.Services
 
         public async Task<Cours> ModifierCours(int id, Cours updatedCours)
         {
+            Console.WriteLine("Debut modification cours dans DataService");
+            Console.WriteLine(updatedCours);
+            
             var existingCours = await CoursService.RecupererCours(id);
             var modifiedCours = await CoursService.ModifierCours(id, updatedCours);
 

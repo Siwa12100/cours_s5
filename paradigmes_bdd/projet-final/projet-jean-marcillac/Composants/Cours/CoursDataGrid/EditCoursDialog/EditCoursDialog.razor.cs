@@ -17,7 +17,7 @@ namespace projet_jean_marcillac.Composants.Cours.CoursDataGrid.EditCoursDialog
         protected ICoursService? CoursService { get; set; }
 
         [Parameter]
-        public Modeles.Cours? Cours { get; set; } = new Modeles.Cours();
+        public Modeles.Cours Cours { get; set; } = new Modeles.Cours();
 
         public int FuturId { get; set; }
 
@@ -50,6 +50,7 @@ namespace projet_jean_marcillac.Composants.Cours.CoursDataGrid.EditCoursDialog
             {
                 futurId++;
             }
+            this.FuturId = futurId;
 
             Console.WriteLine("Id futur prof ----> " + IdProfesseur);
         }
@@ -68,7 +69,10 @@ namespace projet_jean_marcillac.Composants.Cours.CoursDataGrid.EditCoursDialog
 
             if (FormulaireValide)
             {
-                this.Cours.Id = this.FuturId;
+                if (this.Cours.Id <= 0)
+                {
+                    this.Cours.Id = this.FuturId;
+                }
                 this.Cours.IdProfesseur = this.IdProfesseur;
                 this.Cours.IdsElevesInscrits = new List<int>();
                 MudDialog?.Close(DialogResult.Ok(Cours));

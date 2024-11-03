@@ -75,7 +75,6 @@ namespace projet_jean_marcillac.Composants.Cours.CoursDataGrid.TableauCours
             this.Cours ??= new List<CoursModele>();
 
             var nouveauCours = new CoursModele();
-            Console.WriteLine("id prof dans tableau Cours ..... > " + this.IdProfesseur);
             var parameters = new DialogParameters { {"IdProfesseur", this.IdProfesseur } };
             var options = new DialogOptions { MaxWidth = MaxWidth.Medium, FullWidth = true, CloseButton = true };
 

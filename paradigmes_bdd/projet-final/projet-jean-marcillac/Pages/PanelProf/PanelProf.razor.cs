@@ -60,6 +60,7 @@ namespace projet_jean_marcillac.Pages.PanelProf
         protected void OnConnexion(Membre membre)
         {
             MembreConnecte = membre;
+            Console.WriteLine("Membre connecté ----> " + MembreConnecte);
             this.FiltrerCoursParProfesseur();
         }
 
@@ -71,7 +72,7 @@ namespace projet_jean_marcillac.Pages.PanelProf
             if (this.Cours  != null)
             {
                 this.Cours.ForEach(cours => {
-                    if (cours.Id != this.MembreConnecte.Id)
+                    if (cours.IdProfesseur != this.MembreConnecte.Id)
                     {
                         CoursASupprimer.Add(cours);
                     }

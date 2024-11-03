@@ -18,6 +18,7 @@ namespace projet_jean_marcillac.Services.CoursService
 
         public async Task<Cours> AjouterCours(Cours cours)
         {
+            Console.WriteLine("Ajout du cours ---->" + cours);
             await redisService.Database.HashSetAsync($"cours:{cours.Id}", cours.ToHashEntries());
             return cours;
         }

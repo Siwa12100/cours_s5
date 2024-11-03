@@ -42,5 +42,10 @@ namespace projet_jean_marcillac.Modeles
                 new HashEntry("IdsCoursDonnes", string.Join(",", IdsCoursDonnes))
             };
         }
+
+        public override string ToString()
+        {
+            return $"Professeur: Id={Id}, Nom={Nom}, Prenom={Prenom}, IdsCoursDonnes=[{string.Join(", ", IdsCoursDonnes)}]";
+        }
     }
 }
