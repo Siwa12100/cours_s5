@@ -1,5 +1,6 @@
 using projet_jean_marcillac.Modeles;
 using StackExchange.Redis;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,6 +19,7 @@ namespace projet_jean_marcillac.Services.MembreService
         public async Task<Eleve> AjouterEleve(Eleve eleve)
         {
             await redisService.Database.HashSetAsync($"eleve:{eleve.Id}", eleve.ToHashEntries());
+            await redisService.Database.KeyExpireAsync($"eleve:{eleve.Id}", TimeSpan.FromDays(180)); // Expire après 6 mois
             return eleve;
         }
 
@@ -45,6 +47,7 @@ namespace projet_jean_marcillac.Services.MembreService
         public async Task<Eleve> ModifierEleve(int id, Eleve updatedEleve)
         {
             await redisService.Database.HashSetAsync($"eleve:{id}", updatedEleve.ToHashEntries());
+            await redisService.Database.KeyExpireAsync($"eleve:{id}", TimeSpan.FromDays(180)); // Expire après 6 mois
             return updatedEleve;
         }
 
@@ -59,6 +62,7 @@ namespace projet_jean_marcillac.Services.MembreService
         public async Task<Professeur> AjouterProfesseur(Professeur professeur)
         {
             await redisService.Database.HashSetAsync($"professeur:{professeur.Id}", professeur.ToHashEntries());
+            await redisService.Database.KeyExpireAsync($"professeur:{professeur.Id}", TimeSpan.FromDays(180)); // Expire après 6 mois
             return professeur;
         }
 
@@ -86,6 +90,7 @@ namespace projet_jean_marcillac.Services.MembreService
         public async Task<Professeur> ModifierProfesseur(int id, Professeur updatedProfesseur)
         {
             await redisService.Database.HashSetAsync($"professeur:{id}", updatedProfesseur.ToHashEntries());
+            await redisService.Database.KeyExpireAsync($"professeur:{id}", TimeSpan.FromDays(180)); // Expire après 6 mois
             return updatedProfesseur;
         }
 
