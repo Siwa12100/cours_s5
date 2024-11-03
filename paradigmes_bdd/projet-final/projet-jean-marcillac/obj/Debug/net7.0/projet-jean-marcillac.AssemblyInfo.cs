@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("projet-jean-marcillac")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2f714ea88260200f5d9c3e506bc53714c3af6994")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+153404c55704342dbbc082dfbf8dc2e4ed55558b")]
 [assembly: System.Reflection.AssemblyProductAttribute("projet-jean-marcillac")]
 [assembly: System.Reflection.AssemblyTitleAttribute("projet-jean-marcillac")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

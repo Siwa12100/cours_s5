@@ -1,0 +1,13 @@
+@page "/paneletudiant"
+@using projet_jean_marcillac.Composants.FormulaireConnexion
+
+@if (this.MembreConnecte == null)
+{
+    <FormulaireConnexion OnConnexion="OnConnexion"
+                         Membres="@TousLesEtudiants"
+                         Titre="Connexion - Professeur"/>
+}
+else
+{
+
+}

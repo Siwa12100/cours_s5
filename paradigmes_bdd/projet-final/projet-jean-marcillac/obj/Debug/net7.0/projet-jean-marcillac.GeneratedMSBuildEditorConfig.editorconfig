@@ -73,6 +73,10 @@ build_metadata.AdditionalFiles.CssScope = b-2w3l73kyjj
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUGFuZWxBZG1pbi9QYW5lbEFkbWluLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-1hjklefgfg
 
+[/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/Pages/PanelEtudiant/PanelEtudiant.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUGFuZWxFdHVkaWFudC9QYW5lbEV0dWRpYW50LnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-oc1k9a4gju
+
 [/home/siwa/dev/cours_s5/paradigmes_bdd/projet-final/projet-jean-marcillac/Pages/PanelProf/PanelProf.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUGFuZWxQcm9mL1BhbmVsUHJvZi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-4ezb0572rm
