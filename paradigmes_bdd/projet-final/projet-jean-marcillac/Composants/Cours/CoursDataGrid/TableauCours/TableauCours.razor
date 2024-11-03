@@ -13,6 +13,11 @@
                 <PropertyColumn Property="c => c.Titre" Title="Titre" Filterable="true" />
                 <PropertyColumn Property="c => c.Resume" Title="Résumé" Filterable="true" />
                 <PropertyColumn Property="c => c.NombreDePlacesDisponibles" Title="Places Disponibles" Filterable="true" />
+                <TemplateColumn Title="Temps Avant Expiration" Filterable="true">
+                    <CellTemplate>
+                        @context.Item.TempsAvantExpiration minutes
+                    </CellTemplate>
+                </TemplateColumn>
                 <TemplateColumn CellClass="d-flex justify-end">
                     <CellTemplate>
                         <div class="d-flex align-items-center">

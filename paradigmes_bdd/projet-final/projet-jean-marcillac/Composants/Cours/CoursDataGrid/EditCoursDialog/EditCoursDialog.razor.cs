@@ -51,8 +51,6 @@ namespace projet_jean_marcillac.Composants.Cours.CoursDataGrid.EditCoursDialog
                 futurId++;
             }
             this.FuturId = futurId;
-
-            Console.WriteLine("Id futur prof ----> " + IdProfesseur);
         }
 
         protected void Annuler()
@@ -73,7 +71,12 @@ namespace projet_jean_marcillac.Composants.Cours.CoursDataGrid.EditCoursDialog
                 {
                     this.Cours.Id = this.FuturId;
                 }
-                this.Cours.IdProfesseur = this.IdProfesseur;
+
+                if (this.Cours.IdProfesseur <= 0)
+                {
+                    this.Cours.IdProfesseur = this.IdProfesseur;
+                }
+
                 this.Cours.IdsElevesInscrits = new List<int>();
                 MudDialog?.Close(DialogResult.Ok(Cours));
             }

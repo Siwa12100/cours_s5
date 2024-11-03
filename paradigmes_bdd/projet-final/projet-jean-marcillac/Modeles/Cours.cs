@@ -4,6 +4,7 @@ namespace projet_jean_marcillac.Modeles
 {
     public class Cours
     {
+        public static int DateExpirationCours = 50; // en minutes...
         public int Id { get; set; }
         public string Titre { get; set; }
         public string Resume { get; set; }
@@ -11,6 +12,7 @@ namespace projet_jean_marcillac.Modeles
         public int NombreDePlacesDisponibles { get; set; }
         public List<int> IdsElevesInscrits { get; set; }
         public int IdProfesseur { get; set; }
+        public int TempsAvantExpiration { get; set; }
 
         public Cours() {}
 
@@ -24,6 +26,7 @@ namespace projet_jean_marcillac.Modeles
             Contenu = contenu;
             IdProfesseur = idProfesseur;
             IdsElevesInscrits = idsElevesInscrits ?? new List<int>();
+            this.TempsAvantExpiration = Cours.DateExpirationCours;
         }
 
         public Cours(HashEntry[] hashEntries)
@@ -34,6 +37,12 @@ namespace projet_jean_marcillac.Modeles
                     id = int.Parse(id.ToString() ?? "-1");
                 }
 
+                // var tempsAvantExpiration = hashEntries.FirstOrDefault(x => x.Name == "TempsAvantExpiration").Value;
+                // if (!tempsAvantExpiration.IsNullOrEmpty)
+                // {
+                //     tempsAvantExpiration = int.Parse(tempsAvantExpiration.ToString() ?? "-1");
+                // }
+                
                 var titre = hashEntries.FirstOrDefault(x => x.Name == "Titre").Value;
                 var resume = hashEntries.FirstOrDefault(x => x.Name == "Resume").Value;
                 var contenu = hashEntries.FirstOrDefault(x => x.Name == "Contenu").Value;
@@ -65,6 +74,7 @@ namespace projet_jean_marcillac.Modeles
                 }
 
                 Id = (int)id;
+                TempsAvantExpiration = -3;
                 Titre = titre.ToString();
                 Resume = resume.ToString();
                 Contenu = contenu.ToString();
@@ -75,22 +85,10 @@ namespace projet_jean_marcillac.Modeles
 
         public HashEntry[] ToHashEntries()
         {
-            // var entries = new List<HashEntry>
-            // {
-            //     new HashEntry("Id", Id),
-            //     new HashEntry("Titre", Titre),
-            //     new HashEntry("Resume", Resume),
-            //     new HashEntry("Contenu", Contenu),
-            //     new HashEntry("NombreDePlacesDisponibles", NombreDePlacesDisponibles),
-            //     new HashEntry("IdProfesseur", IdProfesseur),
-            //     new HashEntry("IdsElevesInscrits", string.Join(',', IdsElevesInscrits))
-            // };
-
-            // return entries.ToArray();
-
             return new[]
             {
                 new HashEntry("Id", Id),
+                new HashEntry("TempsAvantExpiration", TempsAvantExpiration),
                 new HashEntry("Titre", Titre ?? string.Empty),
                 new HashEntry("Resume", Resume ?? string.Empty),
                 new HashEntry("NombreDePlacesDisponibles", NombreDePlacesDisponibles),
@@ -107,6 +105,7 @@ namespace projet_jean_marcillac.Modeles
                $"Résumé: {Resume}\n" +
                $"Contenu: {Contenu}\n" +
                $"Nombre de places disponibles: {NombreDePlacesDisponibles}\n" +
+               $"Temps avant expiration: {TempsAvantExpiration}\n" +
                $"Id Professeur: {IdProfesseur}\n" +
                $"Ids Élèves Inscrits: {string.Join(", ", IdsElevesInscrits)}";
         }

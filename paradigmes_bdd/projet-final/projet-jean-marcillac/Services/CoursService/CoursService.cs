@@ -18,8 +18,8 @@ namespace projet_jean_marcillac.Services.CoursService
 
         public async Task<Cours> AjouterCours(Cours cours)
         {
-            Console.WriteLine("Ajout du cours ---->" + cours);
             await redisService.Database.HashSetAsync($"cours:{cours.Id}", cours.ToHashEntries());
+            await redisService.Database.KeyExpireAsync($"cours:{cours.Id}", TimeSpan.FromMinutes(Cours.DateExpirationCours));
             return cours;
         }
 
@@ -32,23 +32,35 @@ namespace projet_jean_marcillac.Services.CoursService
             foreach (var cle in cles)
             {
                 var hashEntries = await redisService.Database.HashGetAllAsync(cle);
-                cours.Add(new Cours(hashEntries));
+                var coursRecup = new Cours(hashEntries);
+                var tempsRestant = await redisService.Database.KeyTimeToLiveAsync($"cours:{coursRecup.Id}");
+                if (tempsRestant.HasValue)
+                {
+                    coursRecup.TempsAvantExpiration = (int)tempsRestant.Value.TotalMinutes;
+                }
+                cours.Add(coursRecup);
             }
-
             return cours;
         }
 
         public async Task<Cours> RecupererCours(int id)
         {
             var hashEntries = await redisService.Database.HashGetAllAsync($"cours:{id}");
-            return new Cours(hashEntries);
+            Cours cours = new Cours(hashEntries);
+            var tempsRestant = await redisService.Database.KeyTimeToLiveAsync($"cours:{id}");
+            if (tempsRestant.HasValue)
+            {
+                cours.TempsAvantExpiration = (int)tempsRestant.Value.TotalMinutes;
+            }
+            return cours;
         }
 
         public async Task<Cours> ModifierCours(int id, Cours updatedCours)
         {
+            Console.WriteLine("Modification du cours dans le service ---> " + updatedCours);
             await redisService.Database.HashSetAsync($"cours:{id}", updatedCours.ToHashEntries());
+            await redisService.Database.KeyExpireAsync($"cours:{id}", TimeSpan.FromMinutes(Cours.DateExpirationCours));
             return updatedCours;
-
         }
 
         public async Task<Cours?> SupprimerCours(int id)
