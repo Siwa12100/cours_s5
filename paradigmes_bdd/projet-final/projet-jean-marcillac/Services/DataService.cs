@@ -27,27 +27,25 @@ namespace projet_jean_marcillac.Services
         }
 
         // Gestion des cours
-        public async Task<Cours> AjouterCours(Cours cours)
+        public async Task<Cours> AjouterCours(Cours nouveauCours)
         {
-            var addedCours = await CoursService.AjouterCours(cours);
+            var coursAjoute = await CoursService.AjouterCours(nouveauCours);
 
-            // Mise à jour des élèves inscrits à ce cours
-            foreach (var eleveId in cours.IdsElevesInscrits)
+            foreach (var eleveId in nouveauCours.IdsElevesInscrits)
             {
                 var eleve = await MembreService.RecupererEleve(eleveId);
-                eleve.IdsCoursInscrits.Add(cours.Id);
+                eleve.IdsCoursInscrits.Add(nouveauCours.Id);
                 await MembreService.ModifierEleve(eleve.Id, eleve);
             }
 
-            // Mise à jour du professeur donnant ce cours
-            if (cours.IdProfesseur != -2)
+            if (nouveauCours.IdProfesseur != -2)
             {
-                var professeur = await MembreService.RecupererProfesseur(cours.IdProfesseur);
-                professeur.IdsCoursDonnes.Add(cours.Id);
+                var professeur = await MembreService.RecupererProfesseur(nouveauCours.IdProfesseur);
+                professeur.IdsCoursDonnes.Add(nouveauCours.Id);
                 await MembreService.ModifierProfesseur(professeur.Id, professeur);
             }
 
-            return addedCours;
+            return coursAjoute;
         }
 
         public async Task<IEnumerable<Cours>> RecupererTousLesCours()
@@ -88,16 +86,16 @@ namespace projet_jean_marcillac.Services
             {
                 if (coursExistant.IdProfesseur != -2)
                 {
-                    var oldProfesseur = await MembreService.RecupererProfesseur(coursExistant.IdProfesseur);
-                    oldProfesseur.IdsCoursDonnes.Remove(id);
-                    await MembreService.ModifierProfesseur(oldProfesseur.Id, oldProfesseur);
+                    var ancienProfesseur = await MembreService.RecupererProfesseur(coursExistant.IdProfesseur);
+                    ancienProfesseur.IdsCoursDonnes.Remove(id);
+                    await MembreService.ModifierProfesseur(ancienProfesseur.Id, ancienProfesseur);
                 }
 
                 if (nouvelleVersionDuCours.IdProfesseur != -2)
                 {
-                    var newProfesseur = await MembreService.RecupererProfesseur(nouvelleVersionDuCours.IdProfesseur);
-                    newProfesseur.IdsCoursDonnes.Add(nouvelleVersionDuCours.Id);
-                    await MembreService.ModifierProfesseur(newProfesseur.Id, newProfesseur);
+                    var nouveauProfesseur = await MembreService.RecupererProfesseur(nouvelleVersionDuCours.IdProfesseur);
+                    nouveauProfesseur.IdsCoursDonnes.Add(nouvelleVersionDuCours.Id);
+                    await MembreService.ModifierProfesseur(nouveauProfesseur.Id, nouveauProfesseur);
                 }
             }
 
@@ -115,7 +113,6 @@ namespace projet_jean_marcillac.Services
 
             if (cours != null)
             {
-                // Mise à jour des élèves inscrits à ce cours
                 foreach (var eleveId in cours.IdsElevesInscrits)
                 {
                     var eleve = await MembreService.RecupererEleve(eleveId);
@@ -123,7 +120,6 @@ namespace projet_jean_marcillac.Services
                     await MembreService.ModifierEleve(eleve.Id, eleve);
                 }
 
-                // Mise à jour du professeur donnant ce cours
                 if (cours.IdProfesseur != -2)
                 {
                     var professeur = await MembreService.RecupererProfesseur(cours.IdProfesseur);
@@ -135,7 +131,6 @@ namespace projet_jean_marcillac.Services
             return cours;
         }
 
-        // Gestion des élèves
         public async Task<Eleve> AjouterEleve(Eleve eleve)
         {
             return await MembreService.AjouterEleve(eleve);
