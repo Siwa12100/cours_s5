@@ -23,16 +23,6 @@ namespace projet_jean_marcillac.Composants.Etudiants.EtudiantsDataGrid
 
         private string searchString = "";
 
-        protected override async Task OnInitializedAsync()
-        {
-            // if (this.Etudiants == null)
-            // {
-            //     throw new ArgumentNullException(nameof(Etudiants));
-            // }
-
-            await base.OnInitializedAsync();
-        }
-
         private bool QuickFilter(Eleve etudiant)
         {
             if (string.IsNullOrWhiteSpace(searchString))

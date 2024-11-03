@@ -21,6 +21,10 @@ else
     <h1>Panel Professeur : @this.MembreConnecte.Nom @this.MembreConnecte.Prenom</h1>
 
     <div class="contenu">
+        <MudButton Variant="Variant.Outlined" Color="Color.Warning" Class="mt-2" EndIcon="@Icons.Material.Outlined.Person"
+               OnClick="() => EditerProfil()">
+        Éditer votre profil
+        </MudButton>
         <div class="tableau">
             <TableauCours Cours="@Cours"
                           OnCoursModifie="() => OnCoursModifieAsync()"

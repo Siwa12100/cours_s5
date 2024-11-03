@@ -11,3 +11,7 @@
     align-items: center;
     justify-content: start;
 }
+
+.bouton-ajouter {
+    margin-top: 3vw;
+}

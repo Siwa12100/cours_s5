@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using projet_jean_marcillac.Composants.Cours.CoursDataGrid.EditCoursDialog;
+using projet_jean_marcillac.Composants.FenetreEditionMembre;
 using projet_jean_marcillac.Modeles;
 using projet_jean_marcillac.Services.CoursService;
 using projet_jean_marcillac.Services.MembreService;
@@ -15,6 +16,9 @@ namespace projet_jean_marcillac.Pages.PanelProf
 {
     public partial class PanelProf
     {
+        [Inject]
+        protected IDialogService? DialogService { get; set; }
+
         [Inject]
         protected ICoursService? CoursService { get; set; }   
 
@@ -79,6 +83,29 @@ namespace projet_jean_marcillac.Pages.PanelProf
                 });
                 CoursASupprimer.ForEach(cours => this.Cours.Remove(cours));
             }
+        }
+
+        protected async Task EditerProfil()
+        {
+            if (this.DialogService == null) return;
+            if (this.MembreService == null) return;
+            if (this.MembreConnecte == null) return;
+
+            var parameters = new DialogParameters { { "Membre", this.MembreConnecte } };
+            var options = new DialogOptions { MaxWidth = MaxWidth.Medium, FullWidth = true, CloseButton = true };
+
+            var dialog = DialogService.Show<FenetreEditionMembre>("Modifier votre profil", parameters, options);
+            var resultat = await dialog.Result;
+
+            if (resultat == null) return;
+
+            if (!resultat.Canceled && resultat.Data is Professeur professeurModifie)
+            {
+                await MembreService.ModifierProfesseur(professeurModifie.Id, professeurModifie);
+                this.MembreConnecte = await MembreService.RecupererProfesseur(this.MembreConnecte.Id); 
+                StateHasChanged();
+            }
+
         }
     }
 }

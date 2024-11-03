@@ -4,3 +4,5 @@
 1H --> Inscription / désinscrption à un cours Etudiant + affichage des cours
 1H --> Système de notif
 1H --> Système de péremption
+1H ---> Système de profil 
+1h ---> Ajout difficulté cours
