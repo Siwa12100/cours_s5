@@ -16,12 +16,8 @@ namespace projet_jean_marcillac.Services
         public RedisService RedisService { get; }
 
         public DataService(RedisService redisService)
-        {   
-            if (redisService == null)
-            {
-                throw new ArgumentNullException(nameof(redisService));
-            }
-            this.RedisService = redisService;
+        {
+            this.RedisService = redisService ?? throw new ArgumentNullException(nameof(redisService));
             this.MembreService = new MembreService.MembreService(redisService);
             this.CoursService = new CoursService.CoursService(redisService);
         }
